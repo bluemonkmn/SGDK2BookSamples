@@ -2441,6 +2441,7 @@
       </Sprite>
       <Sprite Name="Points 1" DefinitionName="Points" StateName="HundredPoints" CurrentFrame="0" X="46" Y="12" DX="0" DY="0" Priority="1" Active="false" Color="-1" />
       <Sprite Name="Points 2" DefinitionName="Points" StateName="HundredPoints" CurrentFrame="0" X="59" Y="26" DX="0" DY="0" Priority="1" Active="false" Color="-1" />
+      <Sprite Name="LeftRightFlat 1" DefinitionName="LeftRightFlat" StateName="Left" CurrentFrame="0" X="638" Y="413" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1" />
       <SpritePlan Name="Platform " Priority="1">
         <BaseClass>PlanBase</BaseClass>
         <Coordinate Sequence="1" X="1490" Y="482" Weight="30" />
@@ -2681,6 +2682,35 @@
       <SpriteFrame Sequence="3" FrameValue="199" Duration="8" MaskAlphaLevel="0" />
       <SpriteFrame Sequence="4" FrameValue="198" Duration="8" MaskAlphaLevel="0" />
       <SpriteFrame Sequence="5" FrameValue="197" Duration="8" MaskAlphaLevel="0" />
+    </SpriteState>
+  </SpriteDefinition>
+  <SpriteDefinition Name="LeftRightFlat" BaseClass="SpriteBase">
+    <SpriteRule Name="If facing left" Sequence="1" Type="If" Function="IsInState" Parameter1="(int)Sprites.LeftRightFlat.State.Left" Parameter2="(int)Sprites.LeftRightFlat.State.Left" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If feet blocked going left" Sequence="2" Type="If" Function="IsPointBlocked" Parameter1="RelativePosition.BottomLeft" Parameter2="SpriteBase.Direction.Left" Parameter3="(int)(this.dx-2)" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Or blocked going left" Sequence="3" Type="Or" Function="Blocked" Parameter1="SpriteBase.Direction.Left" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Or bottom left corner is unsupported" Sequence="4" Type="Or" Function="!IsPointBlocked" Parameter1="RelativePosition.BottomLeft" Parameter2="SpriteBase.Direction.Down" Parameter3="2" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Stop moving left" Sequence="5" Type="Do" Function="=" Parameter1="0" ResultParameter="dx" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Turn right at slope" Sequence="6" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.LeftRightFlat.State.Right" Parameter2="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else push left" Sequence="7" Type="Else" Function="AlterXVelocity" Parameter1="-1" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Else If feet blocked going right" Sequence="8" Type="ElseIf" Function="IsPointBlocked" Parameter1="RelativePosition.BottomRight" Parameter2="SpriteBase.Direction.Right" Parameter3="(int)(this.dx+2)" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Or blocked going right" Sequence="9" Type="Or" Function="Blocked" Parameter1="SpriteBase.Direction.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Or bottom right corner unsupported" Sequence="10" Type="Or" Function="!IsPointBlocked" Parameter1="RelativePosition.BottomRight" Parameter2="SpriteBase.Direction.Down" Parameter3="2" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Stop moving right" Sequence="11" Type="Do" Function="=" Parameter1="0" ResultParameter="dx" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Turn left at slope" Sequence="12" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.LeftRightFlat.State.Left" Parameter2="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else push right" Sequence="13" Type="Else" Function="AlterXVelocity" Parameter1="1" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if facing left/right" Sequence="14" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Gravity" Sequence="15" Type="Do" Function="AlterYVelocity" Parameter1="1" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Limit velocity" Sequence="16" Type="Do" Function="LimitVelocity" Parameter1="3" EndIf="false" Suspended="false" />
+    <SpriteRule Name="React to solids" Sequence="17" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Animate" Sequence="18" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByHorizontalVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Move" Sequence="19" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
+    <SpriteState Name="Left" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
+      <SpriteFrame Sequence="0" FrameValue="48" Duration="10" MaskAlphaLevel="0" />
+      <SpriteFrame Sequence="1" FrameValue="49" Duration="10" MaskAlphaLevel="0" />
+    </SpriteState>
+    <SpriteState Name="Right" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="2">
+      <SpriteFrame Sequence="0" FrameValue="43" Duration="10" MaskAlphaLevel="0" />
+      <SpriteFrame Sequence="1" FrameValue="42" Duration="10" MaskAlphaLevel="0" />
     </SpriteState>
   </SpriteDefinition>
   <SpriteCategory Name="Platforms">
@@ -18179,6 +18209,59 @@ PlanBase.prototype.addSpriteAtPlan = function(spriteDefinition, relativePosition
 PlanBase.prototype.mapMouseToSprite = function(target, instantMove, hotSpot) {
    target.mapMouseToSprite(instantMove, hotSpot);
 }</Text>
+  </SourceCode>
+  <SourceCode Name="LeftRightFlatHtml.cs" IsCustomObject="true" DependsOn="">
+    <Text>using System;
+using System.ComponentModel;
+using System.Diagnostics;
+
+public abstract partial class SpriteBase
+{
+   /// &lt;summary&gt;
+   /// Determines if the specified point within a sprite is blocked from moving in a particular direction by the specified number of pixels.
+   /// &lt;/summary&gt;
+   /// &lt;param name="TestPoint"&gt;Point within the sprite from which the test is performed&lt;/param&gt;
+   /// &lt;param name="Direction"&gt;Direction relative to TestPoint which will be tested for solidity&lt;/param&gt;
+   /// &lt;param name="Distance"&gt;How many pixels to check for solidity from the test point&lt;/param&gt;
+   /// &lt;returns&gt;True if there is solidity within Distance pixels of TestPoint, false otherwise.&lt;/returns&gt;
+   [Description("Determines if the specified point within a sprite is blocked from moving in a particular direction by the specified number of pixels.")]
+   public virtual bool IsPointBlocked(RelativePosition TestPoint, Direction Direction, int Distance)
+   {
+      Debug.Assert(this.isActive, "Attempted to execute IsPointBlocked on an inactive sprite");
+      System.Drawing.Point ptRelative = GetRelativePosition(TestPoint);
+      switch (Direction)
+      {
+         case Direction.Up:
+            return layer.GetBottomSolidPixel(new System.Drawing.Rectangle(ptRelative.X, ptRelative.Y - Distance, 1, Distance), m_solidity) != int.MinValue;
+         case Direction.Right:
+            return layer.GetLeftSolidPixel(new System.Drawing.Rectangle(ptRelative.X + 1, ptRelative.Y, Distance, 1), m_solidity) != int.MinValue;
+         case Direction.Down:
+            return layer.GetTopSolidPixel(new System.Drawing.Rectangle(ptRelative.X, ptRelative.Y + 1, 1, Distance), m_solidity) != int.MinValue;
+         case Direction.Left:
+            return layer.GetRightSolidPixel(new System.Drawing.Rectangle(ptRelative.X - Distance, ptRelative.Y, Distance, 1), m_solidity) != int.MinValue;
+      }
+      return false;
+   }
+}</Text>
+  </SourceCode>
+  <SourceCode Name="LeftRightFlatHtml.js" IsCustomObject="true" DependsOn="">
+    <Text>// Begin LeftRightFlatHtml.js
+Sprite.prototype.isPointBlocked = function(testPoint, direction, distance) {
+   var ptRelative = this.getRelativePosition(testPoint);
+   switch (direction)
+   {
+      case "Up":
+         return this.layer.getBottomSolidPixel(ptRelative.x, ptRelative.y - distance, 1, distance, this.solidity) != MapLayer.noSolid;
+      case "Right":
+         return this.layer.getLeftSolidPixel(ptRelative.x + 1, ptRelative.y, distance, 1, this.solidity) != MapLayer.noSolid;
+      case "Down":
+         return this.layer.getTopSolidPixel(ptRelative.x, ptRelative.y + 1, 1, distance, this.solidity) != MapLayer.noSolid;
+      case "Left":
+         return this.layer.getRightSolidPixel(ptRelative.x - distance, ptRelative.y, distance, 1, this.solidity) != MapLayer.noSolid;
+   }
+   return false;
+};
+</Text>
   </SourceCode>
   <Project DisplayMode="m800x600x24" Windowed="true" TitleText="HTML5 Sample Project" StartMap="Level1" OverlayMap="Overlay" MaxPlayers="2" MaxViews="2" Credits="SGDK2 Engine: http://sgdk2.sf.net&#xD;&#xA;Graphics: Jeff Cruz (jeffc@comdel.net)&#xD;&#xA;Sound/Music support provided by FMOD: http://www.fmod.org/&#xD;&#xA;Music: Ceekayed (sampo.narhi@gmail.com)&#xD;&#xA;Spectrum Analyzer Display: Seth Marty&#xD;&#xA;">
     <Comments />
