@@ -655,6 +655,9 @@
   <GraphicSheet Name="FireFont" Columns="24" Rows="4" CellWidth="13" CellHeight="18">
     <Image>iVBORw0KGgoAAAANSUhEUgAAATgAAABICAYAAABiKukfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAE11JREFUeF7tXdtxJMkNXEPOA1lwf/snC+SBLJAFckAWyANZIAtkwXkgQ1YzpUEfGg0gM6u7yeFtXcQEhyw8EolH9ZAbuG/f1n+LgcXAYmAx0DPw/fv3H14ifn81f3fbn8V7FtdTH9lgZGbx/2x6iOufjY+fKl42+U+5H7982xozfo9I836QT2tu88fKZxjO6Fb2PA8o7nhuvHU2GJnOL4pZxfyV5dk6tZpTuWPlvX3l8op6ai7eCV/GAcPFNAcj+X/6fWihpvGys7pIz86fvvyrSpSXjzKKL6UQWM7S4faKC/nr4uoGeYwZ+VEb5ivJo/xbLLHmEGe+4ZhaUGu6wsX4ip+wGJ2PwFf5sB5n+hvJHmpzOP1VGHBOdla307Mzw2Rf2+BfmKJdhM+fI9lD0ZCcVXqogXyBM9iqWBjdrzSwVKxM/JE7pONr9FmfTP9kPpCfWAM2VBl/T93YS/DhxfWR+bpDx18OKKYzvA3sw8CfhQHnZBndLYCXntfJmjyeI2yVPIvN7DPyu1uV5Oww4G7SM/zPeCwme4849HGpA+Sd5T0n1YVS5R3Vg2/SWX6Rj+opnfHnbavybE5n8KefaJqeyHxIfofwX7gBZwMxNm1FiNl+2q9esfA8HgZbJc/E5HUNX9UIWWLYQtguEoHntBCA/naZvPj2TYiwMlwjG+92zsRUyTC6Z/PK+jhckkQdWP2zPmIfoVxGeas1pHcmlt0DBttLA+hf+QGnBGAF4H3E9+Ut9cD0xMVgM5smy8a0DYTEDzvoWD5YTO1lQeTJ+2G42xUNYZ+N9x3kGM4rGUZ3G3CTvLE+Yh+hvFb91uXE9xCyH+O2PmX0DgOO4G4mns3PUP7bfQNuI+Plg/VluJ7yjI5/WjH57lbp7N/ByVmbrL6XY3jbDbgPqAOfp6svkUPzEPFUvM7wrQx11r7vH6YXol3Vz3bpA+58/2S9h7hQcVnsvreRj3E+HP39ngG3kfWy730xxW3yT3wMxmi/0otykYM7ODlrU9E3blmOszwxulSBvYRiLtmcKj4OA46o64pXlm9WbgZb1Il5itxkdT2Dj5kLH8Vb1avMPPh9wP3j+gE3gD3sdi/URGbDf4WP2a9Ynn63ggjxRXsea6Uz22i7J6QTPLMcKDhRjlB+FF/+Y5ZxfLX9Ga4rXlm+WbkZbBm/nb8r84niOsMbsn24DED/wjq8s9BGMP90w8a9r4AZHq9rNjqdyk/U9XZ3hffA9pRFviChiUDmU7FzVr/jbRvqLjdMTZieEseMrOpH4aqSZW2wcttT0YvjGR4YG/7yiHlVfKK4zvCGbB8GXOBM0f82hP91/RPcloyXbdaPl/PvO4zRdmXjQJzDthXD42cfwYdcbDflaDfgBR/G8V1cRVysnxlcsV6YWvWDxLB1gzjzwQ7uOLRYLmIPoprLYoKfmEIPIWwMt2yfMpfw/wfcv28ccC/brB+Te2LyryqYyq63g3Sjn4/iAxWc/1h3F6bdIBHqgOGXiQ/JqH7YOot+Y911zVPVqNVRptvpqL6oxn4FyPKR4WP8KLxtA1eoM6/DzIO0nphAUCF2H4F8EzF2djfJf/Dw7QYYii3ejkYog3NGZhTEI6bni8HGys5gyZpcsWOxoDgUm5ms5YixcwaTrwXkK9YNo1vpqL6Q/Gxes15gfDGxx6cyxm7UUf2oPj5F/u7m+YygRhP+9hhyj1c3nJHMZ2D3l1WH/zOwGa9/xJr5DD6Xz8XANAPMUwkjMw3gAsV3HCTviOkCqpeJxcBiYDGwGFgMLAYWA4uBxcBiYDGwGFgMLAa+OAN/yL9M3JiT7C9hrLvZv1Kx9pfcYmAx4BgYf3VyW3PXL2j78oh8KdtFM12Wb0Vudogqg1uRNUav/GcVDB8Kxswe8jETz5MLNT+z2JRBl/0xi/kDV/cvADr/MxyoOoNovy3Xf6+Q8zPJZpwxvM3qWUMwG1zNh22YVTbNKrqKrB9uEZf/vmpiVccPkEy38+PPUE4rDhDnmV43SDMcLDY0oLPcmI7H2Q2xrC5ZfCj/qHba+AaIZItm9fM4xJjpfoVOZuPKgcoWwY7swBviLJ7b937zbhXTjKzlxr5221y9/ajXFrbbzqz4yXyofrraOxtPl+eqnn1+mb7wHKBNu1XtwKEobI2OnG2XqtsMndVnpud1M4wZV0r/0NwNo8lGzOrnPkCTYTbm7grGbZlVh9TWROwWT8KBj1UZdFG24yyeRZ+IQy+vyEbe2yEicjpTO0xdZQMExXyXjoJXkc36CA6rV35YP6xc15tMj1e1eXV9ZPZgjEMg2aRZ/fyQGHLT7o5EUUfV9dM9vm+fkCZxbbdVs5HU8xm5VbhWZbcLgcRG3AebyEztMPjTYUVse411olxWVQ4VvIps1kdwwL04YLflqni8vPmIX8snuATb1fWR2aNiHEKvrZ1bQ4jbc9XGUIrPY7L37aB6YfebP9kNqJELJi6vg3DFWLbGaramRvvIn53HzacMNibe3SBJcHf4slpjc5pdXGXDFbg6XxU2dhsyyssZ/n1O2d5R8Xh5izl+RXxHDjPu2PpIL7rJOfVtOH1ty7UNmfSmTKUrRFmPS0ls1gyKPrtl1vAh214ue99xHeWRzzPySnoqHB2+WGex5soGcrWJdDL/WX2nDST4qfRRLczo+ZjYvkR10uGIM0CpT5M9Ux8Zh1ntWJ9TdRuHgm3CpZRvEhpBvbYBs4VTDTdFn/Vp+JBtL5e9r7j28WcbkctCEDafsjGkDZFsJu7sxdh9rtonHLeVGelU/k0PcT3bB1fzePgY22ymLi8GYXO0x+/rH8UVz6OdWKNsfXT1Jg221BC5bXTGkaqzFSa5Adg28WZfu0Gk+InFh+b7SKrbEBy/r7YHm1w2tKttw15n93GyyWmmw8aUFnDh60o/Hb7KT+d/hrfDECL7RtWL2BgeGZkKR6y7brN1hy3TU3PA1nBbr4dbi9joOoCKW29ndHYBEv6yYYCG6iwu0+sGZ4Xf61b4Kvud38wuwhnjjxyWTwjFJuSKjwpblx+EvcMWN+yyvMWcdfn1XDEbfZ+21X7LcCNeVK6jPYtZ8cP26pkaZXptVxPDGbk19zDxX3qsU++L1Yk+zcaMftkMbtswenLJOGCxKFyjOKvzzAezBdiaLtZCpTvjp9JhNuCyHPsmUzBmfLI5yDhTeEOxoVxn+irXMz5sWGexznDX8YDsSU9wbJNbU7DyGyHEFlv0EUTxiWRRgV2JxThjuEO4qvPoA9nJLhFvo4p/xk+mg7hQ8EesCsZqUKD8VzGxvKH6tL6pLmjWD8ppV0+IAxVb9iSLeDhTB8j2JedjCjfbay9xsowsBhYDi4HPYuDtp/BnEbP8LgYWA4uBxcBiYDGwGFgMLAYWA4uBxcBiYDHgGTj7S3nEpmIf2brz/M5fpdxpm+HkTv/KH9EYrLE2VZ0lvxjYGBh/BPrl8b8xDK/qr4tPOaVZFPtVWhR/s6k1nHf4utM2E++d/rP8XsXhKdzq1J29hRW97p8TdP+sQP1TN0rA7D8diMX2kX467romGEX02OzM1oOXZ5rrKRNtmz9Gf8YfYzeTucvXXXbZOO/yr9YOi9fkpnEPxV8ft7Z7dc2YyV+9abbygXCaXsSv/nxH6oMXb6+y9U46MxtwbfgwuexiVQoXcZldEgo+BUs15M7a+OwYPsq/mkuV1yn7Q+mirazMxtjD7d1sHK1k/c/T5Akbin38Z2wdBuAnYPBDp3qCUzfHoiLs+EO620Cd2DrbXcCM36tl2CfeGLOi1+UXxaP0XeaHtZ/NElbXclrltppVpf2hUGxxVc86+S2pxeZgRECnnw4lcUNxhZ39uZez9yyviLcsdkaH5WVWzuvN4Nk9AZKbhL0fdcMvU2OzMj7nT1wIW4zDdJCerwWvg/QiPiZfmU7FTxY/G5OCreKtvOyGQrEpVT3r5LfEuI256g2M7O8aRtxQXNlmOfByDE4vw2xnjTYZH4cBRG7EVW373Ko5VXVV3mYH1ozeE5t/dXm1OEzG9FAtxDrz/trh88q998PgY+OxPFb4rsIm8zYUik2y7NlGWrORdjd83LZdpSE6PIdmFrfMbo3m9JA/f65sP41csBxk/phGRHGkT3BELj9aL8ahxsVwdVZmNxCEDc1MTczEW+movc36ZuWyfpvloPU5Dh8bTLMmY87QZtWsYHZFUPiu9JhNphXuLp6NcIdHkVe2n+4SKcSfYUQNiWI4w3M64MR4lJhiLDOxIb7OnBsepidmanQm3jN+fBxXb7fu8s7MHT+vWl7GYbHxkz3r5FDBKLqsbCXH6HsZtM04kzWdGV3E1VYU5IZWJt5ywJE+0iEn6rI4oxyrx/B6VsZjsQu8q4GZGp2J96wf/zDih0r7kZPM/1lsuweFyudwMrF5Nep1duLHx/h9tyl0RrbCwmD0MghXJms6s9tPUaMxMWyDcGKz7GfoMjGdySni9Ox5hg3FNBMPslleVkkdzPY94krBeBUH0OcQOLGVdTdJmy3AM34OA47YMrw1aYjJYuySZBjZLcUxJqTn5Wdiq/QrW/EGtu8ZDpgbO32CI3PE1o2Xq5oYNd6d51lds3UQ+w7VaNVDXa7O4Iv1g3hk6hPVasddZp/yOYSEjb4mH4mtfr4NneCD2TK7a4TX1l2KaCGeA+miH+OBib8qxk5X4SDL5RW5RZwrGGf5ZjFYvVUDnhn0qi/Psc9Blm+f66iH/Fb5RXWV4YODUewhpoaz3LPYMvu0T18MPx7bdp8vRIB6o2YFhxIaCWHl1dvnjB9Wt+PTmhLFh2wwzQ2f4F659xwiXLsBR9ROrDcmLhWD1XH19WqffnCiIeovRSQb41b7KOsFJvaZHmLsxn6JfrrZU10YbG0MOXO4Nu9KtP0hhMeN+Ni4HF9K4ZqNqhjP2meIzobATMMyvpbMPAOH4faR276Vop4PcWm+GwPqE8JHP8m/G18LzxwD4yL87+Myda81c+a4XFqLgcXAGzKwnqrfMCkL0mJgMfAFGVB/2el/scw8WjIy6BeqX5DWBXkxcAsD6h+B2P5T7d4S3NVGx+fh1xZXlognBlbP5GZtz2C7mqNlbzHwLgz4vmO2KrP9p9o9y8fsR1T5YWwE9tjkqmxX3QYcoWf2lQFn9i0YFdtZ8pc+z4CaV97yksw+1cSty4glpf/80Lmz5/zMUWbP7KwaT2MzhcroDVBhMy5Kij8/q6/4WrIaAys3Gl9npWf4/igdNjaPZzdQwYyIetRMOfuYSA+4YsstQ8oIjNz8akPa40IYo44y6D1/KJbMD+sr+kF6M75iLTA+fG4YLjKbnR8GQ/aU0+WisnnVz813Zy/jGsW6fWoie8HjYPvnjA6qf4/f8Dy/xlfHm98aDGMaxfnaQspsI90FL+iZHw88+1lFECvr5Xw8XWyZDtqSWvGAGtXsqpzHPCE+qpi6uLJamJFnuY4cVoOPwYDqCp1vjSdsg1ZycPg0EnqH3YDb4UQDna1pJi/MIGN62TD5YY9w+jplLoRvO+Pk5lcj2nSVbaRbkkRfyIe3a7LPr/592URh2/AgEeDzMgwPJn/FJlcfV1ZIqq8sFosJNU6l2+E6DJyG6yoX7M+jXJdbRbarY1Q/vufU/kO2Wd7RkFL8+BjQ07S3G3uM9cnU5iG+Yfymba7e9owfVqfy0+lnZ8hfda762ZpE3Kx8Bl/ZAC8MfvigJkD4s2KPNXYmFmYjtbpx2eNB/TBTB4h/6kIR+xRxjDB1NWG2n1wxue34ncHJ1OiQGcZv2spqttntoGljENh8DNV7xjbiojrv9D5KZzaXPkfKDYm4Onw8C3lk9KMM0vHnd29cVrEx9VcOnAd3d/XojM/YY933Zj/LTXZGDy5WcDgmN3Ieihboedt3+dga+4XF++xiy84QF9W56idiTos/4XYWH6oFG2zPHLF5QlhQrTD6UQbpZPXGblxGOUE5QtgQH9QTnNinCqbdsHG9VA7AgMV8VTWU5cbqbgYnquntfBif2ATL6HkZRj4tIgJb5afzmZ0hjNW56mdrJnGz8iw+1Dy+uJGPXSMQualinfGD6tTbjJuWZ3RRE2X+FB0kexiKJN8zOVJ1nrFn/WpDq+pln5fne//KbCocpbIjSeJG1q1ogV60rfpi5b1c9T4lPOBn/EX7SMfOr9jkym6NZQsliwXFs2uEZCt0eeMn25aZuvN4VPm76/QMNhsE1UBg6hU1P5vLwyCdmAcIS8yFj5/JK2O/HnDkNtsDEUBvEBxksp9V4FlZL1e9TwtmEpv5sK2k3UDxeJRNrtGH8dhtRGb52g2pCzYuM3FlnLHbnZW4oizSrc6RXuQQXSpZPhneVD9qjzJ9MT1cEsWqrq/0cbCFklPeymCLq03tjEQ2IBabl6veMzgUf8ztOxI6uS033vLeVncpsNxaftSnidhEXr/zHeVYrqs6YjlAfqpzpLc9lRB9UHHN1FD0M6ODasLnBm32RrbQ+Zl6Q7ZPnUdga/svpnMMpYs2ll5pCyNfEt0AtV64KrcM25Z/246MBjBbL6pdBuuXkxkkrE2cct6MN1SMjOErbTH+lsyRgdgHV+RV4Zl9WjabLD7VroL5y8i+7aPlmzPIFhkTxpW2GH9LJh9y7MfExd/HMPA/ceNtt9ee4+kAAAAASUVORK5CYII=</Image>
   </GraphicSheet>
+  <GraphicSheet Name="SmallGfx" Columns="2" Rows="1" CellWidth="8" CellHeight="8">
+    <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAICAYAAADwdn+XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACGSURBVChTYyAS/IdiGEDn4wX/n0fF/P9VUQHT9P+UruH/7fwiRBvy/01Syv//DQ1g+qaL+/9jalr/N3PwEW/Ax8ys/78qK8EuuWJj//+gnPL/dQxsRBsAAv+/FRb9fxwc+v+8qcX/PeIyJGmGgf/3vP3A/gexIUKkAbj/QWyIEOkATTMDAwAgY0z+zv4ObwAAAABJRU5ErkJgggAAAAAAAAAAAAAAAAAAAA==</Image>
+  </GraphicSheet>
   <Frameset Name="SHFLTiles">
     <Frame FrameValue="1" GraphicSheet="SHFL32x32" CellIndex="1" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
     <Frame FrameValue="2" GraphicSheet="SHFL32x32" CellIndex="2" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
@@ -1475,6 +1478,9 @@
     <Frame FrameValue="137" GraphicSheet="SHFLSprites" CellIndex="7" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
     <Frame FrameValue="133" GraphicSheet="SHFLSprites" CellIndex="26" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-16711681" />
     <Frame FrameValue="138" GraphicSheet="SHFLSprites" CellIndex="26" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
+  </Frameset>
+  <Frameset Name="SmallFrames" Folder="">
+    <Frame FrameValue="0" GraphicSheet="SmallGfx" CellIndex="1" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
   </Frameset>
   <Tileset Name="SHFLTileset" Frameset="SHFLTiles" TileWidth="32" TileHeight="32">
     <Tile TileValue="255" Counter="FrameCounter">
@@ -2413,12 +2419,19 @@
       <TileFrame Sequence="0" FrameValue="138" Duration="90" />
     </Tile>
   </Tileset>
+  <Tileset Name="SmallTiles" Frameset="SmallFrames" TileWidth="8" TileHeight="8">
+    <Tile TileValue="0" />
+    <Tile TileValue="1">
+      <TileFrame Sequence="0" FrameValue="0" Duration="1" />
+    </Tile>
+  </Tileset>
   <Counter Name="FrameCounter" Value="1" Max="1000000000" Min="0" />
   <Counter Name="Players" Value="2" Max="2" Min="0" />
   <Counter Name="Player 1 grapes" Value="0" Max="10" Min="0" />
   <Counter Name="Player 1 cherries" Value="0" Max="10" Min="0" />
   <Counter Name="Player 1 ice cream" Value="0" Max="10" Min="0" />
   <Counter Name="Player 1 Score" Value="0" Max="10000000" Min="0" />
+  <Counter Name="Life" Value="12" Max="12" Min="0" />
   <Map Name="Level1" ScrollMarginLeft="350" ScrollMarginTop="350" ScrollMarginRight="350" ScrollMarginBottom="150" ScrollWidth="2048" ScrollHeight="1024">
     <Layer Name="Designer Background" Width="1" Height="1" BytesPerTile="1" OffsetX="0" OffsetY="0" ScrollRateX="0" ScrollRateY="0" Priority="0" VirtualWidth="4000" VirtualHeight="4000">
       <Tiles>AA==</Tiles>
@@ -2507,6 +2520,15 @@
         <Coordinate Sequence="1" X="352" Y="32" Weight="0" />
         <Coordinate Sequence="2" X="512" Y="64" Weight="0" />
         <PlanRule Name="Display score" Sequence="1" Type="Do" Function="DrawCounterWithLabel" Parameter1="&quot;Score:&quot;" Parameter2="Counter.Player_1_Score" Parameter3="System.Drawing.KnownColor.White" EndIf="false" Suspended="false" />
+      </SpritePlan>
+    </Layer>
+    <Layer Name="Life" Width="12" Height="1" Tileset="SmallTiles" BytesPerTile="1" OffsetX="600" OffsetY="32" ScrollRateX="1" ScrollRateY="1" ZIndex="2" Priority="0" VirtualWidth="0" VirtualHeight="0">
+      <Tiles>AAAAAAAAAAAAAAAA</Tiles>
+      <SpritePlan Name="Life" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="0" Y="0" Weight="0" />
+        <Coordinate Sequence="2" X="96" Y="8" Weight="0" />
+        <PlanRule Name="Draw life" Sequence="1" Type="Do" Function="DrawCounterAsTile" Parameter1="1" Parameter2="Counter.Life" Parameter3="PlanBase.DrawStyle.RepeatRightToCounter" EndIf="false" Suspended="false" />
       </SpritePlan>
     </Layer>
   </Map>
@@ -17944,7 +17966,7 @@ PlanBase.prototype.drawCounterAsTile = function(tileIndex, counter, style) {
             this.height);
          disp.clip();
          for(var frameIndex in frames)
-            fr.frames[frameIndex % fr.frames.length].draw(disp, this.left, this.top);
+            fr.frames[frames[frameIndex] % fr.frames.length].draw(disp, this.left, this.top);
          disp.restore();
          break;
       case "StretchRightToCounter":
@@ -17955,7 +17977,8 @@ PlanBase.prototype.drawCounterAsTile = function(tileIndex, counter, style) {
             var frameIndex = frames[i];
             var fillWidth = this.width * counter.value / counter.max;
             for (var repeat = 0; repeat &lt; Math.ceil(fillWidth / ts.tileWidth); repeat++)
-               fr.frames[frameIndex % fr.frames.length].draw(disp, this.left + repeat * ts.tileWidth, this.top);
+               fr.frames[frameIndex % fr.frames.length].draw(disp,
+                  this.left + repeat * ts.tileWidth + this.layer.currentX, this.top + this.layer.currentY);
          }
          break;
       case "ClipTopToCounter":
