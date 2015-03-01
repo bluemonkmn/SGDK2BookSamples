@@ -2626,21 +2626,21 @@
     <SpriteRule Name="IsOnConveyor" Sequence="88" Type="If" Function="IsAgainstTile" Parameter1="TileCategoryName.ConveyorRight" Parameter2="RelativePosition.BottomCenter" Parameter3="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
     <SpriteRule Name="Push sprite rightward" Sequence="89" Type="Do" Function="AlterXVelocity" Parameter1="2" EndIf="true" Suspended="false" />
     <SpriteRule Name="Use grapes to open doors" Sequence="56" Type="Do" Function="TileUseUp" Parameter1="52" Parameter2="Counter.Player_1_grapes" Parameter3="53" ResultParameter="" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Check for collisions with enemies" Sequence="73" Type="Do" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Enemies" ResultParameter="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else if collided with an enemy" Sequence="80" Type="ElseIf" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else check for collisions with enemies" Sequence="79" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Enemies" ResultParameter="TempNum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If collided with an enemy" Sequence="80" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
     <SpriteRule Name="Reduce life" Sequence="82" Type="Do" Function="ChangeCounter" Parameter1="Counter.Life" Parameter2="CounterOperation.DecrementAndStop" EndIf="true" Suspended="false" />
     <SpriteRule Name="Set invincibility to 10 frames" Sequence="81" Type="Do" Function="=" Parameter1="10" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If invincible" Sequence="74" Type="If" Function="&gt;" Parameter1="Invincibility" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Count down invincibility time" Sequence="79" Type="Do" Function="-" Parameter1="Invincibility" Parameter2="1" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If invincible" Sequence="73" Type="If" Function="&gt;" Parameter1="Invincibility" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Count down invincibility time" Sequence="78" Type="Do" Function="-" Parameter1="Invincibility" Parameter2="1" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
     <SpriteRule Name="End if invincible" Sequence="87" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If non-invincible facing left" Sequence="75" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to invincible left" Sequence="76" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If non-invincible facing right" Sequence="77" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to invincible right" Sequence="78" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If non-invincible facing left" Sequence="74" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to invincible left" Sequence="75" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If non-invincible facing right" Sequence="76" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to invincible right" Sequence="77" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
     <SpriteRule Name="If invincible facing right" Sequence="83" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="(int)Sprites.Player.State.RightInvincible" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to non-invincible right" Sequence="84" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Switch to non-invincible right" Sequence="84" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
     <SpriteRule Name="If invincible facing left" Sequence="85" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="(int)Sprites.Player.State.LeftInvincible" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to non-invincible left" Sequence="86" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Switch to non-invincible left" Sequence="86" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
     <SpriteParameter Name="TempNum" />
     <SpriteParameter Name="ViewNum" />
     <SpriteParameter Name="Invincibility" />
