@@ -2545,102 +2545,116 @@
     </SpriteState>
   </SpriteDefinition>
   <SpriteDefinition Name="Player" BaseClass="SpriteBase">
-    <SpriteRule Name="If climbing" Sequence="2" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Climbing" Parameter2="(int)Sprites.Player.State.Climbing" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Check if player left ladder" Sequence="3" Type="If" Function="!IsOnTile" Parameter1="TileCategoryName.Ladder" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Leave ladder" Sequence="5" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Ladder inertia" Sequence="6" Type="Do" Function="ReactToInertia" Parameter1="0" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Ladder accellerate" Sequence="7" Type="Do" Function="AccelerateByInputs" Parameter1="20" Parameter2="2" Parameter3="false" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Animate climbing" Sequence="8" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByVerticalVelocity" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else (not climbing) if trying to climb up" Sequence="9" Type="ElseIf" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Up" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Start climbing" Sequence="12" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Climbing" Parameter2="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else (not trying to climb) if standing on solid" Sequence="14" Type="ElseIf" Function="Blocked" Parameter1="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Or riding on platform" Sequence="15" Type="Or" Function="IsRidingPlatform" EndIf="false" Suspended="false" />
-    <SpriteRule Name="And pressing button 2" Sequence="16" Type="And" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button2" Parameter2="false" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Stop riding" Sequence="17" Type="Do" Function="StopRiding" EndIf="false" Suspended="false" />
-    <SpriteRule Name="* Example - play jump sound effect" Sequence="18" Type="Do" Function="CustomObjects.Sfx.PlaySound" Parameter1="CustomObjects.Drum.Value" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Jump" Sequence="19" Type="Do" Function="=" Parameter1="-10" ResultParameter="dy" EndIf="true" Suspended="false" />
-    <SpriteRule Name="End if (trying to start climbing or jumping)" Sequence="20" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Accellerate" Sequence="21" Type="Do" Function="AccelerateByInputs" Parameter1="10" Parameter2="5" Parameter3="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Gravity" Sequence="22" Type="Do" Function="AlterYVelocity" Parameter1=".4" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Inertia" Sequence="23" Type="Do" Function="ReactToInertia" Parameter1="100" Parameter2="80" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Animate" Sequence="24" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByHorizontalVelocity" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If moving left" Sequence="25" Type="If" Function="IsMoving" Parameter1="SpriteBase.Direction.Left" EndIf="false" Suspended="false" />
-    <SpriteRule Name="and facing right" Sequence="26" Type="And" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
-    <SpriteRule Name="then face left" Sequence="27" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If moving right" Sequence="28" Type="If" Function="IsMoving" Parameter1="SpriteBase.Direction.Right" EndIf="false" Suspended="false" />
-    <SpriteRule Name="and facing left" Sequence="29" Type="And" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
-    <SpriteRule Name="then face right" Sequence="30" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If riding platform" Sequence="31" Type="If" Function="IsRidingPlatform" EndIf="false" Suspended="false" />
-    <SpriteRule Name="React to platform" Sequence="32" Type="Do" Function="ReactToPlatform" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else check if landing on platform" Sequence="33" Type="Else" Function="LandDownOnPlatform" Parameter1="ParentLayer.m_SpriteCategories.Platforms" EndIf="true" Suspended="false" />
-    <SpriteRule Name="End climbing/jumping handling" Sequence="34" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="React to solid" Sequence="35" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Snap to ground" Sequence="37" Type="Do" Function="SnapToGround" Parameter1="2" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Move by velocity" Sequence="38" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Tile interactions..." Sequence="41" Type="If" Function="TouchTiles" Parameter1="TileCategoryName.Touchable" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If player 1" Sequence="42" Type="If" Function="==" Parameter1="ViewNum" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Scroll into view" Sequence="40" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Activate player's view" Sequence="39" Type="Do" Function="=" Parameter1="ViewNum" ResultParameter="CurrentView" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Player 1 take grapes" Sequence="43" Type="Do" Function="TileTake" Parameter1="55" Parameter2="Counter.Player_1_grapes" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else player 2 take grapes" Sequence="57" Type="Else" Function="TileTake" Parameter1="55" Parameter2="Counter.Player_2_grapes" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Player 1 take cherries" Sequence="50" Type="Do" Function="TileTake" Parameter1="54" Parameter2="Counter.Player_1_cherries" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Player 1 take ice cream" Sequence="55" Type="Do" Function="TileTake" Parameter1="56" Parameter2="Counter.Player_1_ice_cream" Parameter3="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Player 2 take cherries" Sequence="64" Type="Do" Function="TileTake" Parameter1="54" Parameter2="Counter.Player_2_cherries" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Player 2 take ice cream" Sequence="71" Type="Do" Function="TileTake" Parameter1="56" Parameter2="Counter.Player_2_ice_cream" Parameter3="0" EndIf="true" Suspended="true" />
-    <SpriteRule Name="Get player 1 grape points" Sequence="44" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Show player 1 grape points" Sequence="46" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch player 1 grape points to 1000" Sequence="48" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="1" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Get player 1 cherry points" Sequence="51" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Show player 1 cherry points" Sequence="53" Type="Do" Function="TileAddSprite" Parameter1="0" Parameter2="typeof(Sprites.Points)" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If new player 1 grape points were shown" Sequence="47" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Add grape points to player 1 score" Sequence="49" Type="Do" Function="+" Parameter1="Counter.Player_1_Score.CurrentValue" Parameter2="1000" ResultParameter="Counter.Player_1_Score.CurrentValue" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Add cherry points to player 1 score" Sequence="54" Type="Do" Function="+" Parameter1="Counter.Player_1_Score.CurrentValue" Parameter2="100" ResultParameter="Counter.Player_1_Score.CurrentValue" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Get player 2 grape points" Sequence="58" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Show player 2 grape points" Sequence="60" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
-    <SpriteRule Name="If new player 2 grape points were shown" Sequence="61" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Switch player 2 grape points to 1000" Sequence="62" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="1" EndIf="true" Suspended="true" />
-    <SpriteRule Name="Add grape points to player 2 score" Sequence="63" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="1000" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
-    <SpriteRule Name="Show player 2 cherry points" Sequence="67" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Get player 2 cherry points" Sequence="65" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="If new player 2 cherry points were shown" Sequence="68" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Switch player 2 cherry points to 100" Sequence="69" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="0" EndIf="true" Suspended="true" />
-    <SpriteRule Name="Add cherry points to player 2 score" Sequence="70" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="100" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
-    <SpriteRule Name="End tile interactions" Sequence="72" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If menu requested" Sequence="90" Type="If" Function="IsKeyPressed" Parameter1="Key.Escape" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Go to menu" Sequence="93" Type="Do" Function="SwitchToMap" Parameter1="typeof(Menu_Map)" Parameter2="false" EndIf="true" Suspended="true" />
-    <SpriteRule Name="React to springs" Sequence="36" Type="Do" Function="ReactToSprings" EndIf="false" Suspended="false" />
-    <SpriteRule Name="And player 1" Sequence="91" Type="And" Function="==" Parameter1="ViewNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Play player 1 grape sound" Sequence="45" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Play player 1 cherry sound" Sequence="52" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Play player 2 grape sound" Sequence="59" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Play player 2 cherry sound" Sequence="66" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Continue music" Sequence="96" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Signal94.Value" Parameter2="CustomObjects.SoundReplay.Continue" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Switch solidity to ladder" Sequence="13" Type="Do" Function="SetSolidity" Parameter1="Solidity.OnLadder" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to non-ladder solidity" Sequence="4" Type="Do" Function="SetSolidity" Parameter1="Solidity.Standard" EndIf="false" Suspended="false" />
-    <SpriteRule Name="And standing in front of ladder" Sequence="11" Type="And" Function="IsOnTile" Parameter1="TileCategoryName.Ladder" Parameter2="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Or trying to climb down" Sequence="10" Type="Or" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Down" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Reset overlay initialization flag" Sequence="92" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="false" EndIf="false" Suspended="true" />
-    <SpriteRule Name="If threw bubble" Sequence="94" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button1" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Create bubble" Sequence="95" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.PlatformBubble)" Parameter2="RelativePosition.TopCenter" Parameter3="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Get keyboard inputs" Sequence="1" Type="Do" Function="MapPlayerToInputs" Parameter1="1" EndIf="false" Suspended="false" />
-    <SpriteRule Name="IsOnConveyor" Sequence="88" Type="If" Function="IsAgainstTile" Parameter1="TileCategoryName.ConveyorRight" Parameter2="RelativePosition.BottomCenter" Parameter3="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Push sprite rightward" Sequence="89" Type="Do" Function="AlterXVelocity" Parameter1="2" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Use grapes to open doors" Sequence="56" Type="Do" Function="TileUseUp" Parameter1="52" Parameter2="Counter.Player_1_grapes" Parameter3="53" ResultParameter="" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else check for collisions with enemies" Sequence="79" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Enemies" ResultParameter="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If collided with an enemy" Sequence="80" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Reduce life" Sequence="82" Type="Do" Function="ChangeCounter" Parameter1="Counter.Life" Parameter2="CounterOperation.DecrementAndStop" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Set invincibility to 10 frames" Sequence="81" Type="Do" Function="=" Parameter1="10" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If invincible" Sequence="73" Type="If" Function="&gt;" Parameter1="Invincibility" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Count down invincibility time" Sequence="78" Type="Do" Function="-" Parameter1="Invincibility" Parameter2="1" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
-    <SpriteRule Name="End if invincible" Sequence="87" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If non-invincible facing left" Sequence="74" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to invincible left" Sequence="75" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If non-invincible facing right" Sequence="76" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to invincible right" Sequence="77" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If invincible facing right" Sequence="83" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="(int)Sprites.Player.State.RightInvincible" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to non-invincible right" Sequence="84" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If invincible facing left" Sequence="85" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="(int)Sprites.Player.State.LeftInvincible" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to non-invincible left" Sequence="86" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If climbing" Sequence="14" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Climbing" Parameter2="(int)Sprites.Player.State.Climbing" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Check if player left ladder" Sequence="15" Type="If" Function="!IsOnTile" Parameter1="TileCategoryName.Ladder" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Leave ladder" Sequence="17" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Ladder inertia" Sequence="18" Type="Do" Function="ReactToInertia" Parameter1="0" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Ladder accellerate" Sequence="19" Type="Do" Function="AccelerateByInputs" Parameter1="20" Parameter2="2" Parameter3="false" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Animate climbing" Sequence="20" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByVerticalVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else (not climbing) if trying to climb up" Sequence="21" Type="ElseIf" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Up" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Start climbing" Sequence="24" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Climbing" Parameter2="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else (not trying to climb) if standing on solid" Sequence="26" Type="ElseIf" Function="Blocked" Parameter1="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Or riding on platform" Sequence="27" Type="Or" Function="IsRidingPlatform" EndIf="false" Suspended="false" />
+    <SpriteRule Name="And pressing button 2" Sequence="28" Type="And" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button2" Parameter2="false" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Stop riding" Sequence="29" Type="Do" Function="StopRiding" EndIf="false" Suspended="false" />
+    <SpriteRule Name="* Example - play jump sound effect" Sequence="30" Type="Do" Function="CustomObjects.Sfx.PlaySound" Parameter1="CustomObjects.Drum.Value" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Jump" Sequence="31" Type="Do" Function="=" Parameter1="-10" ResultParameter="dy" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if (trying to start climbing or jumping)" Sequence="32" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Accellerate" Sequence="33" Type="Do" Function="AccelerateByInputs" Parameter1="10" Parameter2="5" Parameter3="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Gravity" Sequence="34" Type="Do" Function="AlterYVelocity" Parameter1=".4" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Inertia" Sequence="35" Type="Do" Function="ReactToInertia" Parameter1="100" Parameter2="80" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Animate" Sequence="36" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByHorizontalVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If moving left" Sequence="37" Type="If" Function="IsMoving" Parameter1="SpriteBase.Direction.Left" EndIf="false" Suspended="false" />
+    <SpriteRule Name="and facing right" Sequence="38" Type="And" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="then face left" Sequence="39" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If moving right" Sequence="40" Type="If" Function="IsMoving" Parameter1="SpriteBase.Direction.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="and facing left" Sequence="41" Type="And" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
+    <SpriteRule Name="then face right" Sequence="42" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If riding platform" Sequence="43" Type="If" Function="IsRidingPlatform" EndIf="false" Suspended="false" />
+    <SpriteRule Name="React to platform" Sequence="44" Type="Do" Function="ReactToPlatform" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else check if landing on platform" Sequence="45" Type="Else" Function="LandDownOnPlatform" Parameter1="ParentLayer.m_SpriteCategories.Platforms" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End climbing/jumping handling" Sequence="46" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="React to solid" Sequence="47" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Snap to ground" Sequence="49" Type="Do" Function="SnapToGround" Parameter1="2" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Move by velocity" Sequence="50" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Tile interactions..." Sequence="53" Type="If" Function="TouchTiles" Parameter1="TileCategoryName.Touchable" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If player 1" Sequence="54" Type="If" Function="==" Parameter1="ViewNum" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Scroll into view" Sequence="52" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Activate player's view" Sequence="51" Type="Do" Function="=" Parameter1="ViewNum" ResultParameter="CurrentView" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Player 1 take grapes" Sequence="55" Type="Do" Function="TileTake" Parameter1="55" Parameter2="Counter.Player_1_grapes" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else player 2 take grapes" Sequence="69" Type="Else" Function="TileTake" Parameter1="55" Parameter2="Counter.Player_2_grapes" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Player 1 take cherries" Sequence="62" Type="Do" Function="TileTake" Parameter1="54" Parameter2="Counter.Player_1_cherries" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Player 1 take ice cream" Sequence="67" Type="Do" Function="TileTake" Parameter1="56" Parameter2="Counter.Player_1_ice_cream" Parameter3="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Player 2 take cherries" Sequence="76" Type="Do" Function="TileTake" Parameter1="54" Parameter2="Counter.Player_2_cherries" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Player 2 take ice cream" Sequence="83" Type="Do" Function="TileTake" Parameter1="56" Parameter2="Counter.Player_2_ice_cream" Parameter3="0" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Get player 1 grape points" Sequence="56" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Show player 1 grape points" Sequence="58" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch player 1 grape points to 1000" Sequence="60" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="1" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Get player 1 cherry points" Sequence="63" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Show player 1 cherry points" Sequence="65" Type="Do" Function="TileAddSprite" Parameter1="0" Parameter2="typeof(Sprites.Points)" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If new player 1 grape points were shown" Sequence="59" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Add grape points to player 1 score" Sequence="61" Type="Do" Function="+" Parameter1="Counter.Player_1_Score.CurrentValue" Parameter2="1000" ResultParameter="Counter.Player_1_Score.CurrentValue" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Add cherry points to player 1 score" Sequence="66" Type="Do" Function="+" Parameter1="Counter.Player_1_Score.CurrentValue" Parameter2="100" ResultParameter="Counter.Player_1_Score.CurrentValue" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Get player 2 grape points" Sequence="70" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Show player 2 grape points" Sequence="72" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="If new player 2 grape points were shown" Sequence="73" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Switch player 2 grape points to 1000" Sequence="74" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="1" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Add grape points to player 2 score" Sequence="75" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="1000" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Show player 2 cherry points" Sequence="79" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Get player 2 cherry points" Sequence="77" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="If new player 2 cherry points were shown" Sequence="80" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Switch player 2 cherry points to 100" Sequence="81" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="0" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Add cherry points to player 2 score" Sequence="82" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="100" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
+    <SpriteRule Name="End tile interactions" Sequence="84" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If menu requested" Sequence="104" Type="If" Function="IsKeyPressed" Parameter1="Key.Escape" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Go to menu" Sequence="107" Type="Do" Function="SwitchToMap" Parameter1="typeof(Menu_Map)" Parameter2="false" EndIf="true" Suspended="true" />
+    <SpriteRule Name="React to springs" Sequence="48" Type="Do" Function="ReactToSprings" EndIf="false" Suspended="false" />
+    <SpriteRule Name="And player 1" Sequence="105" Type="And" Function="==" Parameter1="ViewNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Play player 1 grape sound" Sequence="57" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Play player 1 cherry sound" Sequence="64" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Play player 2 grape sound" Sequence="71" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Play player 2 cherry sound" Sequence="78" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Continue music" Sequence="110" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Signal94.Value" Parameter2="CustomObjects.SoundReplay.Continue" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Switch solidity to ladder" Sequence="25" Type="Do" Function="SetSolidity" Parameter1="Solidity.OnLadder" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to non-ladder solidity" Sequence="16" Type="Do" Function="SetSolidity" Parameter1="Solidity.Standard" EndIf="false" Suspended="false" />
+    <SpriteRule Name="And standing in front of ladder" Sequence="23" Type="And" Function="IsOnTile" Parameter1="TileCategoryName.Ladder" Parameter2="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Or trying to climb down" Sequence="22" Type="Or" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Down" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Reset overlay initialization flag" Sequence="106" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="false" EndIf="false" Suspended="true" />
+    <SpriteRule Name="If threw bubble" Sequence="108" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button1" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Create bubble" Sequence="109" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.PlatformBubble)" Parameter2="RelativePosition.TopCenter" Parameter3="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Get keyboard inputs" Sequence="4" Type="Do" Function="MapPlayerToInputs" Parameter1="1" EndIf="false" Suspended="false" />
+    <SpriteRule Name="IsOnConveyor" Sequence="102" Type="If" Function="IsAgainstTile" Parameter1="TileCategoryName.ConveyorRight" Parameter2="RelativePosition.BottomCenter" Parameter3="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Push sprite rightward" Sequence="103" Type="Do" Function="AlterXVelocity" Parameter1="2" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Use grapes to open doors" Sequence="68" Type="Do" Function="TileUseUp" Parameter1="52" Parameter2="Counter.Player_1_grapes" Parameter3="53" ResultParameter="" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else check for collisions with enemies" Sequence="91" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Enemies" ResultParameter="TempNum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If collided with an enemy" Sequence="92" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Reduce life" Sequence="94" Type="If" Function="ChangeCounter" Parameter1="Counter.Life" Parameter2="CounterOperation.DecrementAndStop" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Set invincibility to 10 frames" Sequence="93" Type="Do" Function="=" Parameter1="10" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If invincible" Sequence="85" Type="If" Function="&gt;" Parameter1="Invincibility" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Count down invincibility time" Sequence="90" Type="Do" Function="-" Parameter1="Invincibility" Parameter2="1" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
+    <SpriteRule Name="End if invincible" Sequence="101" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If non-invincible facing left" Sequence="86" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to invincible left" Sequence="87" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If non-invincible facing right" Sequence="88" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to invincible right" Sequence="89" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If invincible facing right" Sequence="97" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="(int)Sprites.Player.State.RightInvincible" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to non-invincible right" Sequence="98" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If invincible facing left" Sequence="99" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="(int)Sprites.Player.State.LeftInvincible" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to non-invincible left" Sequence="100" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Switch to dead" Sequence="95" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Dead" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if collided with enemy" Sequence="96" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If player is dead" Sequence="5" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Dead" Parameter2="(int)Sprites.Player.State.Dead" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Cancel input" Sequence="13" Type="Do" Function="ClearInputs" Parameter1="false" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If game is not saved on this map" Sequence="1" Type="If" Function="!IsMapFlagOn" Parameter1="1" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Remember the current state" Sequence="2" Type="Do" Function="SaveGame" Parameter1="1" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If player pressed button 1" Sequence="9" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button1" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Load saved state" Sequence="12" Type="Do" Function="LoadGame" Parameter1="1" Parameter2="true" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Remember that game was saved" Sequence="3" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="1" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If respawn message is not showing" Sequence="6" Type="If" Function="!IsMapFlagOn" Parameter1="2" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Show re-spawn message" Sequence="7" Type="Do" Function="ShowMessage" Parameter1="&quot;You died. Press Ctrl to re-spawn.&quot;" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Remember that re-spawn message is shown" Sequence="8" Type="Do" Function="SetMapFlag" Parameter1="2" Parameter2="1" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Clear messages" Sequence="10" Type="Do" Function="ClearAllMessages" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Remember respawn message is not showing" Sequence="11" Type="Do" Function="SetMapFlag" Parameter1="2" Parameter2="0" EndIf="false" Suspended="false" />
     <SpriteParameter Name="TempNum" />
     <SpriteParameter Name="ViewNum" />
     <SpriteParameter Name="Invincibility" />
@@ -2691,6 +2705,9 @@
       <SpriteFrame Sequence="5" FrameValue="66" Duration="10" MaskAlphaLevel="0" />
       <SpriteFrame Sequence="7" FrameValue="66" Duration="10" MaskAlphaLevel="0" />
       <SpriteFrame Sequence="9" FrameValue="66" Duration="10" MaskAlphaLevel="0" />
+    </SpriteState>
+    <SpriteState Name="Dead" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="6">
+      <SpriteFrame Sequence="0" FrameValue="28" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
   </SpriteDefinition>
   <SpriteDefinition Name="Points" BaseClass="SpriteBase">
