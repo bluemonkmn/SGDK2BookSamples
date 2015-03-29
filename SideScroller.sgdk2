@@ -2463,7 +2463,9 @@
       </Sprite>
       <Sprite Name="Points 1" DefinitionName="Points" StateName="HundredPoints" CurrentFrame="0" X="46" Y="12" DX="0" DY="0" Priority="1" Active="false" Color="-1" />
       <Sprite Name="Points 2" DefinitionName="Points" StateName="HundredPoints" CurrentFrame="0" X="59" Y="26" DX="0" DY="0" Priority="1" Active="false" Color="-1" />
-      <Sprite Name="LeftRightFlat 1" DefinitionName="LeftRightFlat" StateName="Left" CurrentFrame="0" X="704" Y="416" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1" />
+      <Sprite Name="LeftRightFlat 1" DefinitionName="LeftRightFlat" StateName="Left" CurrentFrame="0" X="704" Y="416" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
+        <ParameterValue ParameterName="damage" Value="0" />
+      </Sprite>
       <Sprite Name="Boulder 1" DefinitionName="Boulder" StateName="Falling" CurrentFrame="0" X="768" Y="512" DX="0" DY="0" Priority="1" Active="false" Solidity="Standard" Color="-1" />
       <SpritePlan Name="Platform " Priority="1">
         <BaseClass>PlanBase</BaseClass>
@@ -2678,7 +2680,10 @@
     <SpriteRule Name="Tell new arrows to move left" Sequence="116" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="false" EndIf="true" Suspended="false" />
     <SpriteRule Name="End if pressed arrow shooting button" Sequence="117" Type="End" Function="End" EndIf="true" Suspended="false" />
     <SpriteRule Name="If pressed dynamite button" Sequence="118" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button3" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Plant dynamite" Sequence="119" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Dynamite)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Throw dynamite" Sequence="122" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Dynamite)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If throwing rightward" Sequence="119" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Tell dynamite to throw rightward" Sequence="120" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Otherwise tell dynamite to throw left" Sequence="121" Type="Else" Function="SetMapFlag" Parameter1="3" Parameter2="false" EndIf="true" Suspended="false" />
     <SpriteParameter Name="TempNum" />
     <SpriteParameter Name="ViewNum" />
     <SpriteParameter Name="Invincibility" />
@@ -2789,7 +2794,7 @@
       <SpriteFrame Sequence="5" FrameValue="197" Duration="8" MaskAlphaLevel="0" />
     </SpriteState>
   </SpriteDefinition>
-  <SpriteDefinition Name="LeftRightFlat" BaseClass="SpriteBase">
+  <SpriteDefinition Name="LeftRightFlat" Folder="" BaseClass="SpriteBase">
     <SpriteRule Name="If facing left" Sequence="1" Type="If" Function="IsInState" Parameter1="(int)Sprites.LeftRightFlat.State.Left" Parameter2="(int)Sprites.LeftRightFlat.State.Left" EndIf="false" Suspended="false" />
     <SpriteRule Name="If feet blocked going left" Sequence="2" Type="If" Function="IsPointBlocked" Parameter1="RelativePosition.BottomLeft" Parameter2="SpriteBase.Direction.Left" Parameter3="(int)(this.dx-2)" EndIf="false" Suspended="false" />
     <SpriteRule Name="Or blocked going left" Sequence="3" Type="Or" Function="Blocked" Parameter1="SpriteBase.Direction.Left" EndIf="false" Suspended="false" />
@@ -2809,6 +2814,10 @@
     <SpriteRule Name="React to solids" Sequence="17" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
     <SpriteRule Name="Animate" Sequence="18" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByHorizontalVelocity" EndIf="false" Suspended="false" />
     <SpriteRule Name="Move" Sequence="19" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Check for damage" Sequence="20" Type="Do" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Damage" ResultParameter="damage" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If damage occurred" Sequence="21" Type="If" Function="&gt;=" Parameter1="damage" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Deactivate" Sequence="22" Type="Do" Function="Deactivate" EndIf="true" Suspended="false" />
+    <SpriteParameter Name="damage" />
     <SpriteState Name="Left" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="48" Duration="10" MaskAlphaLevel="0" />
       <SpriteFrame Sequence="1" FrameValue="49" Duration="10" MaskAlphaLevel="0" />
@@ -2852,17 +2861,28 @@
     </SpriteState>
   </SpriteDefinition>
   <SpriteDefinition Name="Dynamite" Folder="" BaseClass="SpriteBase">
-    <SpriteRule Name="Animate" Sequence="1" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByFrame" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If burning" Sequence="2" Type="If" Function="IsInState" Parameter1="(int)Sprites.Dynamite.State.Burning" Parameter2="(int)Sprites.Dynamite.State.Burning" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If done burning" Sequence="3" Type="If" Function="&gt;" Parameter1="frame" Parameter2="90" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Explode" Sequence="4" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Dynamite.State.Exploding" Parameter2="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Reset frame" Sequence="5" Type="Do" Function="=" Parameter1="0" ResultParameter="frame" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Else (not burning) if done exploding" Sequence="6" Type="ElseIf" Function="&gt;=" Parameter1="frame" Parameter2="36" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Deactivate" Sequence="7" Type="Do" Function="Deactivate" EndIf="false" Suspended="false" />
-    <SpriteRule Name="End if burning" Sequence="11" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Else (not done exploding) if at explosion max" Sequence="8" Type="ElseIf" Function="==" Parameter1="frame" Parameter2="18" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Create damage sprite here" Sequence="9" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Damage)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
-    <SpriteRule Name="End if done exploding" Sequence="10" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Animate" Sequence="7" Type="Do" Function="Animate" Parameter1="SpriteBase.SpriteAnimationType.ByFrame" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If burning" Sequence="8" Type="If" Function="IsInState" Parameter1="(int)Sprites.Dynamite.State.Burning" Parameter2="(int)Sprites.Dynamite.State.Burning" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If done burning" Sequence="13" Type="If" Function="&gt;" Parameter1="frame" Parameter2="90" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Explode" Sequence="14" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Dynamite.State.Exploding" Parameter2="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Reset frame" Sequence="15" Type="Do" Function="=" Parameter1="0" ResultParameter="frame" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Else (not burning) if done exploding" Sequence="16" Type="ElseIf" Function="&gt;=" Parameter1="frame" Parameter2="36" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Deactivate" Sequence="17" Type="Do" Function="Deactivate" EndIf="false" Suspended="false" />
+    <SpriteRule Name="End if burning" Sequence="21" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Else (not done exploding) if at explosion max" Sequence="18" Type="ElseIf" Function="==" Parameter1="frame" Parameter2="18" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Create damage sprite here" Sequence="19" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Damage)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if done exploding" Sequence="20" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Apply gravity" Sequence="9" Type="Do" Function="AlterYVelocity" Parameter1=".4" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Reduce inertia" Sequence="10" Type="Do" Function="ReactToInertia" Parameter1="100" Parameter2="95" EndIf="false" Suspended="false" />
+    <SpriteRule Name="React to solidity" Sequence="11" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Move according to velocity" Sequence="12" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If not initialized" Sequence="1" Type="If" Function="==" Parameter1="initialized" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If initialize right" Sequence="2" Type="If" Function="IsMapFlagOn" Parameter1="3" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Set movement rightward" Sequence="3" Type="Do" Function="AlterXVelocity" Parameter1="8" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Set movement leftward" Sequence="4" Type="Else" Function="AlterXVelocity" Parameter1="-8" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Set initialized" Sequence="6" Type="Do" Function="=" Parameter1="1" ResultParameter="initialized" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Set upward movement" Sequence="5" Type="Do" Function="AlterYVelocity" Parameter1="-6" EndIf="false" Suspended="false" />
+    <SpriteParameter Name="initialized" />
     <SpriteState Name="Burning" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="70" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
@@ -2879,9 +2899,14 @@
     </SpriteState>
   </SpriteDefinition>
   <SpriteDefinition Name="Damage" Folder="" BaseClass="SpriteBase">
-    <SpriteRule Name="Touch tiles" Sequence="1" Type="If" Function="TouchTiles" Parameter1="TileCategoryName.Destructible" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Remove destructible tiles" Sequence="2" Type="Do" Function="TileChange" Parameter1="63" Parameter2="0" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Deactivate" Sequence="3" Type="Do" Function="Deactivate" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Touch tiles" Sequence="4" Type="If" Function="TouchTiles" Parameter1="TileCategoryName.Destructible" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Remove destructible tiles" Sequence="5" Type="Do" Function="TileChange" Parameter1="63" Parameter2="0" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Deactivate" Sequence="7" Type="Do" Function="Deactivate" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If not initialized" Sequence="1" Type="If" Function="==" Parameter1="duration" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Set duration to 1" Sequence="2" Type="Do" Function="=" Parameter1="1" ResultParameter="duration" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Otherwise decrease duration" Sequence="3" Type="Else" Function="-" Parameter1="duration" Parameter2="1" ResultParameter="duration" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If duration is zero" Sequence="6" Type="If" Function="==" Parameter1="duration" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteParameter Name="duration" />
     <SpriteState Name="Explosion" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="71" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
@@ -2895,6 +2920,9 @@
   <SpriteCategory Name="Enemies">
     <SpriteCategorySprite DefinitionName="LeftRightFlat" />
     <SpriteCategorySprite DefinitionName="Boulder" />
+  </SpriteCategory>
+  <SpriteCategory Name="Damage">
+    <SpriteCategorySprite DefinitionName="Damage" />
   </SpriteCategory>
   <Solidity Name="Standard">
     <SolidityShape CategoryName="Solid" ShapeName="SolidTileShape" />
