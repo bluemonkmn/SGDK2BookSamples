@@ -906,6 +906,8 @@
     <Frame FrameValue="244" GraphicSheet="SHFL32x32" CellIndex="89" m11="0.50000006" m12="0.8660253" m21="-0.8660253" m22="0.50000006" dx="21.8564034" dy="-5.856406" color="-1" />
     <Frame FrameValue="245" GraphicSheet="SHFL32x32" CellIndex="89" m11="0.258819044" m12="0.9659258" m21="-0.9659258" m22="0.258819044" dx="27.3137074" dy="-3.5959177" color="-1" />
     <Frame FrameValue="246" GraphicSheet="SHFL32x32" CellIndex="52" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-2130706433" />
+    <Frame FrameValue="247" GraphicSheet="SHFLSprites" CellIndex="68" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
+    <Frame FrameValue="248" GraphicSheet="SHFLSprites" CellIndex="70" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
   </Frameset>
   <Frameset Name="SpriteFrames">
     <Frame FrameValue="0" GraphicSheet="SHFLSprites" CellIndex="0" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
@@ -1602,6 +1604,10 @@
     </Tile>
     <Tile TileValue="239">
       <TileFrame Sequence="0" FrameValue="246" Duration="1" />
+    </Tile>
+    <Tile TileValue="238" Counter="FrameCounter">
+      <TileFrame Sequence="0" FrameValue="248" Duration="0" />
+      <TileFrame Sequence="1" FrameValue="247" Duration="1" />
     </Tile>
   </Tileset>
   <Tileset Name="LetterTiles" Frameset="LetterFrames" TileWidth="32" TileHeight="32">
@@ -2440,6 +2446,7 @@
   <Counter Name="Player 1 ice cream" Value="0" Max="10" Min="0" />
   <Counter Name="Player 1 Score" Value="0" Max="10000000" Min="0" />
   <Counter Name="Life" Value="12" Max="12" Min="0" />
+  <Counter Name="Enhanced Arrows" Value="0" Max="1" Min="0" />
   <Map Name="Level1" ScrollMarginLeft="350" ScrollMarginTop="350" ScrollMarginRight="350" ScrollMarginBottom="150" ScrollWidth="2048" ScrollHeight="1024">
     <Layer Name="Designer Background" Width="1" Height="1" BytesPerTile="1" OffsetX="0" OffsetY="0" ScrollRateX="0" ScrollRateY="0" Priority="0" VirtualWidth="4000" VirtualHeight="4000">
       <Tiles>AA==</Tiles>
@@ -2451,7 +2458,7 @@
       <Tiles>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwsbIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACxsq+ko6GwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK+jpKOlpaWlsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAAAAAr6KlpaWlpaWlobAAALGyr7AAAAAAAAAAAAAAAAAAAAAAAAAAAAAApAAAsbKvoqWlpaWlpaWlpaGwr6Kko6SwAACxsgAAAAAAAAAAAAAAAAAAAAAApbCvoqGipaWlpaWlpaWlpaWho6WlpaWhsK+ipbCvpbAAAAAAAAAAAAAAAAAAq62sp6uqpaWlpaWlpaWlpaanp6enq6unraqlpq2qpaQAAAAAAAAAAAAAAAAAtLS0tba3uLi4uLi4uLi4uLO0tLS0tLS0tLunvLW7qqWwAAAAAAAAAAAAAAAAmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmLm1upi5u6qhsAAAAAAAAAAAAAAAmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYubuqobCxsgAAAAAAAAAAmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmP6YmJiYmLm7qqSjobAAAAAAAAAAmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJi5u6qlpaGwAAAAAAAAmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYubuqpaWhsAAAAAAA</Tiles>
     </Layer>
     <Layer Name="Main" Width="64" Height="32" Tileset="SHFLTileset" BytesPerTile="1" OffsetX="0" OffsetY="0" ScrollRateX="1" ScrollRateY="1" ZIndex="3" Priority="0" VirtualWidth="0" VirtualHeight="0">
-      <Tiles>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAALi4uLi4uLi4uLi4uLi4uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAuAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAALgAAAAAA8PDw8PDwAAAuAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAC4AAAAALi4uLi4uLi4uLj8/PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAuAAAAAC4AAAAAAAAAAAAAPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAD8AAAAALkBBAAAuAAAAAAAAAAAAAD8/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAC4AAAAALgAAAAAAAAAAAAA/PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAPgAAAAAAAAAuAAAAAC4AAAAAAAAAAAAAPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAALkFAAAAuAAAAAAAAAAAAAD8/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAA9AAAAAAAAAAAAAC4AAAAAAAAAAAAAAAAAAAA/PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAuAAAAAAAAAAAAAAAAAAAAPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAG1ubm5ubm8AMTExMTExMTExAAAAAAAAAD8/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0FAQQAAAABwcXFxcXFyAAcHBwcHBwcHBwAAQAAACwIDAwQAAAAA+gAAAAAWFgAAABYWAAAAAAAAAAAAAAAAAAcAAAAAAAAAc3R0dHR0dQAHAAAAAAAAAAAAAAAACw0HBwcHAAAAAAAAAAAAFgAAAAAAFgAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAEwAAAAABwAAAAAAAAAAAAAACw0HBwcHBzoAAAAAAAAAABYAAAAAABYAAAAAAAAAAAAAAAAAB0BAQQAAAAAAAABMAAAAAAcAAAA3AAAAAAAACw0HBwcHBwc7OgAAUFBQAAAWAAAAAAAWAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAATAAAAAAHAFwAAAAAAAAACw0HFhYWFhYWFhYWFhYWFhYWFgAAAAAAFgAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAE0AAAAABwBcAAAAAAAACw0HBxYAAAAVAAAAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAAAABwwAAAAAAAAAAABMAAAAAAgKWwoIBwcHBwcHBwcWAAAALQAAAAAAAAAAAAAAAAAZEgAWAAAAAAAAAAAAAAAAAAcODAAAAAAAAAAATAAAAAAAAFwAAAAAAAAAAAAAFgBVADAwMAAAAAAAAAAAAAAZGxUAFgAAAAAAAAAAAAAAAAAHBw4MAAAAAAAAAEwAAAAAAABcAAAAAAAAAAAAABZUWlYAAAAAAAAAAAAAAAAZGwAAABYAAAAAAAAAAAAAAAAABwcHDgwAAAAAAABMAAAAAAAAXAAAAAAAAAAAAAAWAFhBMDAwMAAAAAAAAAAZGwAAAEAWAAAAAAAAAAAAAAAAAAcHBwcOBAAAAAECAwIEADYIClsKCDYAOAAAAAAAFgBZADMAAAAAAAAAAAAZGwAAAAAAFgAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAABYAWRkVAAAAAAAAAAAZGwAAAAAAABYAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAWFhYWFhYWFhYWFhYWFhYWFhYWFhYWAAAAAAAAAAAAAAAAAAcAADoAAAAAAAAAAAAAAAAAAFwAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHADs6OgAAAAAAAABDQ0MAAABcAAAAAAAAAAAAAEMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABww7Ozo6AAAAAAAAQzdDAH4AXAAAAAAAAAAAAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcOAwICAwICAwICAwIDAwIDAgIDAgIDAgMCAgIDAgMCAgICAgMCAgMCAgMCAgICAwIDAgIDAgIDAgICAwICAgQ=</Tiles>
+      <Tiles>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAALi4uLi4uLi4uLi4uLi4uAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAAAALgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAuAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAALgAAAAAA8PDw8PDwAAAuAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAC4AAAAALi4uLi4uLi4uLj8/PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAuAAAAAC4AAAAAAAAAAAAAPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAD8AAAAALkBBAAAuAAAAAAAAAAAAAD8/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAC4AAAAALgAAAAAAAAAAAAA/PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAPgAAAAAAAAAuAAAAAC4AAAAAAAAAAAAAPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAALkFAAAAuAAAAAAAAAAAAAD8/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAA9AAAAAAAAAAAAAC4AAAAAAAAAAAAAAAAAAAA/PwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAAAuAAAAAAAAAAAAAAAAAAAAPz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAG1ubm5ubm8AMTExMTExMTExAAAAAAAAAD8/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0FAQQAAAABwcXFxcXFyAAcHBwcHBwcHBwAAQAAACwIDAwQAAAAA+gAAAAAWFgAAABYWAAAAAAAAAAAAAAAAAAcAAAAAAAAAc3R0dHR0dQAHAAAAAAAAAAAAAAAACw0HBwcHAAAAAAAAAAAAFgAAAAAAFgAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAEwAAAAABwAAAAAAAAAAAAAACw0HBwcHBzoAAAAAAAAAABYAAAAAABYAAAAAAAAAAAAAAAAAB0BAQQAAAAAAAABMAAAAAAcAAAA3AAAAAAAACw0HBwcHBwc7OgAAUFBQAAAWAAAAAAAWAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAATAAAAAAHAFwAAAAAAAAACw0HFhYWFhYWFhYWFhYWFhYWFgAAAAAAFgAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAE0AAAAABwBcAAAAAAAACw0HBxYAAAAVAAAAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAAAABwwAAAAAAAAAAABMAAAAAAgKWwoIBwcHBwcHBwcWAAAALQAAAAAAAAAAAAAAAAAZEgAWAAAAAAAAAAAAAAAAAAcODAAAAAAAAAAATAAAAAAAAFwAAAAAAAAAAAAAFgBVADAwMAAAAAAAAAAAAAAZGxUAFgAAAAAAAAAAAAAAAAAHBw4MAAAAAAAAAEwAAAAAAABcAAAAAAAAAAAAABZUWlYAAAAAAAAAAAAAAAAZGwAAABYAAAAAAAAAAAAAAAAABwcHDgwAAAAAAABMAO4AAAAAXAAAAAAAAAAAAAAWAFhBMDAwMAAAAAAAAAAZGwAAAEAWAAAAAAAAAAAAAAAAAAcHBwcOBAAAAAECAwIEADYIClsKCDYAOAAAAAAAFgBZADMAAAAAAAAAAAAZGwAAAAAAFgAAAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAABYAWRkVAAAAAAAAAAAZGwAAAAAAABYAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAWFhYWFhYWFhYWFhYWFhYWFhYWFhYWAAAAAAAAAAAAAAAAAAcAADoAAAAAAAAAAAAAAAAAAFwAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHADs6OgAAAAAAAABDQ0MAAABcAAAAAAAAAAAAAEMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABww7Ozo6AAAAAAAAQzdDAH4AXAAAAAAAAAAAAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcOAwICAwICAwICAwIDAwIDAgIDAgIDAgMCAgIDAgMCAgICAgMCAgMCAgMCAgICAwIDAgIDAgIDAgICAwICAgQ=</Tiles>
       <Sprite Name="Platform 1" DefinitionName="Platform" StateName="Main" CurrentFrame="0" X="1489" Y="481" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="CoordIndex" Value="0" />
         <ParameterValue ParameterName="WaitCounter" Value="0" />
@@ -2465,6 +2472,7 @@
       <Sprite Name="Points 2" DefinitionName="Points" StateName="HundredPoints" CurrentFrame="0" X="59" Y="26" DX="0" DY="0" Priority="1" Active="false" Color="-1" />
       <Sprite Name="LeftRightFlat 1" DefinitionName="LeftRightFlat" StateName="Left" CurrentFrame="0" X="704" Y="416" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="damage" Value="0" />
+        <ParameterValue ParameterName="hp" Value="3" />
       </Sprite>
       <Sprite Name="Boulder 1" DefinitionName="Boulder" StateName="Falling" CurrentFrame="0" X="768" Y="512" DX="0" DY="0" Priority="1" Active="false" Solidity="Standard" Color="-1" />
       <SpritePlan Name="Platform " Priority="1">
@@ -2599,11 +2607,11 @@
     <SpriteRule Name="Scroll into view" Sequence="52" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="false" Suspended="false" />
     <SpriteRule Name="Activate player's view" Sequence="51" Type="Do" Function="=" Parameter1="ViewNum" ResultParameter="CurrentView" EndIf="false" Suspended="false" />
     <SpriteRule Name="Player 1 take grapes" Sequence="55" Type="Do" Function="TileTake" Parameter1="55" Parameter2="Counter.Player_1_grapes" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else player 2 take grapes" Sequence="69" Type="Else" Function="TileTake" Parameter1="55" Parameter2="Counter.Player_2_grapes" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Else player 2 take grapes" Sequence="70" Type="Else" Function="TileTake" Parameter1="55" Parameter2="Counter.Player_2_grapes" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
     <SpriteRule Name="Player 1 take cherries" Sequence="62" Type="Do" Function="TileTake" Parameter1="54" Parameter2="Counter.Player_1_cherries" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="false" />
     <SpriteRule Name="Player 1 take ice cream" Sequence="67" Type="Do" Function="TileTake" Parameter1="56" Parameter2="Counter.Player_1_ice_cream" Parameter3="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Player 2 take cherries" Sequence="76" Type="Do" Function="TileTake" Parameter1="54" Parameter2="Counter.Player_2_cherries" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Player 2 take ice cream" Sequence="83" Type="Do" Function="TileTake" Parameter1="56" Parameter2="Counter.Player_2_ice_cream" Parameter3="0" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Player 2 take cherries" Sequence="77" Type="Do" Function="TileTake" Parameter1="54" Parameter2="Counter.Player_2_cherries" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Player 2 take ice cream" Sequence="84" Type="Do" Function="TileTake" Parameter1="56" Parameter2="Counter.Player_2_ice_cream" Parameter3="0" EndIf="true" Suspended="true" />
     <SpriteRule Name="Get player 1 grape points" Sequence="56" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
     <SpriteRule Name="Show player 1 grape points" Sequence="58" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="false" />
     <SpriteRule Name="Switch player 1 grape points to 1000" Sequence="60" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="1" EndIf="true" Suspended="false" />
@@ -2612,53 +2620,53 @@
     <SpriteRule Name="If new player 1 grape points were shown" Sequence="59" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
     <SpriteRule Name="Add grape points to player 1 score" Sequence="61" Type="Do" Function="+" Parameter1="Counter.Player_1_Score.CurrentValue" Parameter2="1000" ResultParameter="Counter.Player_1_Score.CurrentValue" EndIf="true" Suspended="false" />
     <SpriteRule Name="Add cherry points to player 1 score" Sequence="66" Type="Do" Function="+" Parameter1="Counter.Player_1_Score.CurrentValue" Parameter2="100" ResultParameter="Counter.Player_1_Score.CurrentValue" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Get player 2 grape points" Sequence="70" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Show player 2 grape points" Sequence="72" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
-    <SpriteRule Name="If new player 2 grape points were shown" Sequence="73" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Switch player 2 grape points to 1000" Sequence="74" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="1" EndIf="true" Suspended="true" />
-    <SpriteRule Name="Add grape points to player 2 score" Sequence="75" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="1000" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
-    <SpriteRule Name="Show player 2 cherry points" Sequence="79" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Get player 2 cherry points" Sequence="77" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="If new player 2 cherry points were shown" Sequence="80" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Switch player 2 cherry points to 100" Sequence="81" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="0" EndIf="true" Suspended="true" />
-    <SpriteRule Name="Add cherry points to player 2 score" Sequence="82" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="100" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
-    <SpriteRule Name="End tile interactions" Sequence="84" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If menu requested" Sequence="112" Type="If" Function="IsKeyPressed" Parameter1="Key.Escape" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Go to menu" Sequence="115" Type="Do" Function="SwitchToMap" Parameter1="typeof(Menu_Map)" Parameter2="false" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Get player 2 grape points" Sequence="71" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Show player 2 grape points" Sequence="73" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="If new player 2 grape points were shown" Sequence="74" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Switch player 2 grape points to 1000" Sequence="75" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="1" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Add grape points to player 2 score" Sequence="76" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="1000" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Show player 2 cherry points" Sequence="80" Type="Do" Function="TileActivateSprite" Parameter1="0" Parameter2="ParentLayer.m_SpriteCategories.Points" Parameter3="true" ResultParameter="TempNum" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Get player 2 cherry points" Sequence="78" Type="If" Function="&gt;" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="If new player 2 cherry points were shown" Sequence="81" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Switch player 2 cherry points to 100" Sequence="82" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.Points" Parameter2="TempNum" Parameter3="0" EndIf="true" Suspended="true" />
+    <SpriteRule Name="Add cherry points to player 2 score" Sequence="83" Type="Do" Function="+" Parameter1="Counter.Player_2_Score.CurrentValue" Parameter2="100" ResultParameter="Counter.Player_2_Score.CurrentValue" EndIf="true" Suspended="true" />
+    <SpriteRule Name="End tile interactions" Sequence="85" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If menu requested" Sequence="113" Type="If" Function="IsKeyPressed" Parameter1="Key.Escape" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Go to menu" Sequence="116" Type="Do" Function="SwitchToMap" Parameter1="typeof(Menu_Map)" Parameter2="false" EndIf="true" Suspended="true" />
     <SpriteRule Name="React to springs" Sequence="48" Type="Do" Function="ReactToSprings" EndIf="false" Suspended="false" />
-    <SpriteRule Name="And player 1" Sequence="113" Type="And" Function="==" Parameter1="ViewNum" Parameter2="0" EndIf="false" Suspended="true" />
+    <SpriteRule Name="And player 1" Sequence="114" Type="And" Function="==" Parameter1="ViewNum" Parameter2="0" EndIf="false" Suspended="true" />
     <SpriteRule Name="Play player 1 grape sound" Sequence="57" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
     <SpriteRule Name="Play player 1 cherry sound" Sequence="64" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Play player 2 grape sound" Sequence="71" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
-    <SpriteRule Name="Play player 2 cherry sound" Sequence="78" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Play player 2 grape sound" Sequence="72" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
+    <SpriteRule Name="Play player 2 cherry sound" Sequence="79" Type="Do" Function="CustomObjects.FMODBase.PlaySound" Parameter1="CustomObjects.Chime.Value" Parameter2="CustomObjects.SoundReplay.Restart" EndIf="false" Suspended="true" />
     <SpriteRule Name="Switch solidity to ladder" Sequence="25" Type="Do" Function="SetSolidity" Parameter1="Solidity.OnLadder" EndIf="false" Suspended="false" />
     <SpriteRule Name="Switch to non-ladder solidity" Sequence="16" Type="Do" Function="SetSolidity" Parameter1="Solidity.Standard" EndIf="false" Suspended="false" />
     <SpriteRule Name="And standing in front of ladder" Sequence="23" Type="And" Function="IsOnTile" Parameter1="TileCategoryName.Ladder" Parameter2="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
     <SpriteRule Name="Or trying to climb down" Sequence="22" Type="Or" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Down" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Reset overlay initialization flag" Sequence="114" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="false" EndIf="false" Suspended="true" />
-    <SpriteRule Name="If pressed arrow shooting button" Sequence="116" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button1" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Create arrow on right side" Sequence="118" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Arrow)" Parameter2="RelativePosition.RightMiddle" Parameter3="RelativePosition.LeftMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Reset overlay initialization flag" Sequence="115" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="false" EndIf="false" Suspended="true" />
+    <SpriteRule Name="If pressed arrow shooting button" Sequence="117" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button1" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Create arrow on right side" Sequence="119" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Arrow)" Parameter2="RelativePosition.RightMiddle" Parameter3="RelativePosition.LeftMiddle" EndIf="false" Suspended="false" />
     <SpriteRule Name="Get keyboard inputs" Sequence="4" Type="Do" Function="MapPlayerToInputs" Parameter1="1" EndIf="false" Suspended="false" />
-    <SpriteRule Name="IsOnConveyor" Sequence="110" Type="If" Function="IsAgainstTile" Parameter1="TileCategoryName.ConveyorRight" Parameter2="RelativePosition.BottomCenter" Parameter3="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Push sprite rightward" Sequence="111" Type="Do" Function="AlterXVelocity" Parameter1="2" EndIf="true" Suspended="false" />
+    <SpriteRule Name="IsOnConveyor" Sequence="111" Type="If" Function="IsAgainstTile" Parameter1="TileCategoryName.ConveyorRight" Parameter2="RelativePosition.BottomCenter" Parameter3="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Push sprite rightward" Sequence="112" Type="Do" Function="AlterXVelocity" Parameter1="2" EndIf="true" Suspended="false" />
     <SpriteRule Name="Use grapes to open doors" Sequence="68" Type="Do" Function="TileUseUp" Parameter1="52" Parameter2="Counter.Player_1_grapes" Parameter3="53" ResultParameter="" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else check for collisions with enemies" Sequence="91" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Enemies" ResultParameter="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If collided with an enemy" Sequence="95" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Reduce life" Sequence="101" Type="If" Function="ChangeCounter" Parameter1="Counter.Life" Parameter2="CounterOperation.DecrementAndStop" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Else set invincibility to 10 frames" Sequence="100" Type="Else" Function="=" Parameter1="10" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If invincible" Sequence="85" Type="If" Function="&gt;" Parameter1="Invincibility" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Count down invincibility time" Sequence="90" Type="Do" Function="-" Parameter1="Invincibility" Parameter2="1" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
-    <SpriteRule Name="End if invincible" Sequence="109" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If non-invincible facing left" Sequence="86" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to invincible left" Sequence="87" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If non-invincible facing right" Sequence="88" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to invincible right" Sequence="89" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If invincible facing right" Sequence="105" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="(int)Sprites.Player.State.RightInvincible" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to non-invincible right" Sequence="106" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If invincible facing left" Sequence="107" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="(int)Sprites.Player.State.LeftInvincible" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to non-invincible left" Sequence="108" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Switch to dead" Sequence="102" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Dead" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="End if collided with enemy" Sequence="104" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Else check for collisions with enemies" Sequence="92" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Enemies" ResultParameter="TempNum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If collided with an enemy" Sequence="96" Type="If" Function="&gt;=" Parameter1="TempNum" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Reduce life" Sequence="102" Type="If" Function="ChangeCounter" Parameter1="Counter.Life" Parameter2="CounterOperation.DecrementAndStop" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Else set invincibility to 10 frames" Sequence="101" Type="Else" Function="=" Parameter1="10" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If invincible" Sequence="86" Type="If" Function="&gt;" Parameter1="Invincibility" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Count down invincibility time" Sequence="91" Type="Do" Function="-" Parameter1="Invincibility" Parameter2="1" ResultParameter="Invincibility" EndIf="false" Suspended="false" />
+    <SpriteRule Name="End if invincible" Sequence="110" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If non-invincible facing left" Sequence="87" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="(int)Sprites.Player.State.Left" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to invincible left" Sequence="88" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If non-invincible facing right" Sequence="89" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to invincible right" Sequence="90" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If invincible facing right" Sequence="106" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.RightInvincible" Parameter2="(int)Sprites.Player.State.RightInvincible" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to non-invincible right" Sequence="107" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If invincible facing left" Sequence="108" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.LeftInvincible" Parameter2="(int)Sprites.Player.State.LeftInvincible" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to non-invincible left" Sequence="109" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Left" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Switch to dead" Sequence="103" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Dead" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if collided with enemy" Sequence="105" Type="End" Function="End" EndIf="true" Suspended="false" />
     <SpriteRule Name="If player is dead" Sequence="5" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Dead" Parameter2="(int)Sprites.Player.State.Dead" EndIf="false" Suspended="false" />
     <SpriteRule Name="Cancel input" Sequence="13" Type="Do" Function="ClearInputs" Parameter1="false" EndIf="true" Suspended="false" />
     <SpriteRule Name="If game is not saved on this map" Sequence="1" Type="If" Function="!IsMapFlagOn" Parameter1="1" EndIf="false" Suspended="false" />
@@ -2671,24 +2679,25 @@
     <SpriteRule Name="Remember that re-spawn message is shown" Sequence="8" Type="Do" Function="SetMapFlag" Parameter1="2" Parameter2="1" EndIf="true" Suspended="false" />
     <SpriteRule Name="Clear messages" Sequence="10" Type="Do" Function="ClearAllMessages" EndIf="false" Suspended="false" />
     <SpriteRule Name="Remember respawn message is not showing" Sequence="11" Type="Do" Function="SetMapFlag" Parameter1="2" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If on spikes" Sequence="92" Type="If" Function="IsOnTile" Parameter1="TileCategoryName.Deadly" Parameter2="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Remove all life" Sequence="93" Type="Do" Function="ChangeCounter" Parameter1="Counter.Life" Parameter2="CounterOperation.SetToMinimum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Switch to dead on spikes" Sequence="94" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Dead" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If shooting rightward" Sequence="117" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Tell new arrows to move right" Sequence="119" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else create arrow on left side" Sequence="120" Type="Else" Function="AddSpriteHere" Parameter1="typeof(Sprites.Arrow)" Parameter2="RelativePosition.LeftMiddle" Parameter3="RelativePosition.RightMiddle" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Tell new arrows to move left" Sequence="121" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="false" EndIf="true" Suspended="false" />
-    <SpriteRule Name="End if pressed arrow shooting button" Sequence="122" Type="End" Function="End" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If pressed dynamite button" Sequence="123" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button3" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Throw dynamite" Sequence="127" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Dynamite)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If throwing rightward" Sequence="124" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Tell dynamite to throw rightward" Sequence="125" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Otherwise tell dynamite to throw left" Sequence="126" Type="Else" Function="SetMapFlag" Parameter1="3" Parameter2="false" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If moving downward" Sequence="96" Type="If" Function="IsMoving" Parameter1="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
-    <SpriteRule Name="And enemy is below" Sequence="97" Type="And" Function="IsUnder" Parameter1="ParentLayer.m_SpriteCategories.Enemies" Parameter2="TempNum" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Damage enemy" Sequence="98" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Damage)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Bounce" Sequence="99" Type="Do" Function="=" Parameter1="-this.dy" ResultParameter="dy" EndIf="false" Suspended="false" />
-    <SpriteRule Name="End if stomped on enemy" Sequence="103" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If on spikes" Sequence="93" Type="If" Function="IsOnTile" Parameter1="TileCategoryName.Deadly" Parameter2="RelativePosition.BottomCenter" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Remove all life" Sequence="94" Type="Do" Function="ChangeCounter" Parameter1="Counter.Life" Parameter2="CounterOperation.SetToMinimum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Switch to dead on spikes" Sequence="95" Type="Do" Function="SwitchToState" Parameter1="(int)Sprites.Player.State.Dead" Parameter2="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If shooting rightward" Sequence="118" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Tell new arrows to move right" Sequence="120" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else create arrow on left side" Sequence="121" Type="Else" Function="AddSpriteHere" Parameter1="typeof(Sprites.Arrow)" Parameter2="RelativePosition.LeftMiddle" Parameter3="RelativePosition.RightMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Tell new arrows to move left" Sequence="122" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="false" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if pressed arrow shooting button" Sequence="123" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If pressed dynamite button" Sequence="124" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Button3" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Throw dynamite" Sequence="128" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Dynamite)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If throwing rightward" Sequence="125" Type="If" Function="IsInState" Parameter1="(int)Sprites.Player.State.Right" Parameter2="(int)Sprites.Player.State.Right" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Tell dynamite to throw rightward" Sequence="126" Type="Do" Function="SetMapFlag" Parameter1="3" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Otherwise tell dynamite to throw left" Sequence="127" Type="Else" Function="SetMapFlag" Parameter1="3" Parameter2="false" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If moving downward" Sequence="97" Type="If" Function="IsMoving" Parameter1="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
+    <SpriteRule Name="And enemy is below" Sequence="98" Type="And" Function="IsUnder" Parameter1="ParentLayer.m_SpriteCategories.Enemies" Parameter2="TempNum" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Damage enemy" Sequence="99" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Damage)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Bounce" Sequence="100" Type="Do" Function="=" Parameter1="-this.dy" ResultParameter="dy" EndIf="false" Suspended="false" />
+    <SpriteRule Name="End if stomped on enemy" Sequence="104" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Player 1 take enhanced arrows" Sequence="69" Type="Do" Function="TileTake" Parameter1="238" Parameter2="Counter.Enhanced_Arrows" Parameter3="0" ResultParameter="TempNum" EndIf="false" Suspended="false" />
     <SpriteParameter Name="TempNum" />
     <SpriteParameter Name="ViewNum" />
     <SpriteParameter Name="Invincibility" />
@@ -2821,8 +2830,12 @@
     <SpriteRule Name="Move" Sequence="19" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
     <SpriteRule Name="Check for damage" Sequence="20" Type="Do" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Damage" ResultParameter="damage" EndIf="false" Suspended="false" />
     <SpriteRule Name="If damage occurred" Sequence="21" Type="If" Function="&gt;=" Parameter1="damage" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Deactivate" Sequence="22" Type="Do" Function="Deactivate" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Deactivate" Sequence="23" Type="Do" Function="Deactivate" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If hp &lt;= 1" Sequence="22" Type="If" Function="&lt;=" Parameter1="hp" Parameter2="1" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else decrease hp" Sequence="24" Type="Else" Function="-" Parameter1="hp" Parameter2="1" ResultParameter="hp" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if damage occurred" Sequence="25" Type="End" Function="End" EndIf="true" Suspended="false" />
     <SpriteParameter Name="damage" />
+    <SpriteParameter Name="hp" />
     <SpriteState Name="Left" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="48" Duration="10" MaskAlphaLevel="0" />
       <SpriteFrame Sequence="1" FrameValue="49" Duration="10" MaskAlphaLevel="0" />
@@ -2844,9 +2857,9 @@
     </SpriteState>
   </SpriteDefinition>
   <SpriteDefinition Name="Arrow" Folder="" BaseClass="SpriteBase">
-    <SpriteRule Name="If horizontal movement stopped" Sequence="10" Type="If" Function="==" Parameter1="dx" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Deactivate" Sequence="12" Type="Do" Function="Deactivate" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Else move" Sequence="13" Type="Else" Function="MoveByVelocity" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If horizontal movement stopped" Sequence="16" Type="If" Function="==" Parameter1="dx" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Deactivate" Sequence="18" Type="Do" Function="Deactivate" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else move" Sequence="19" Type="Else" Function="MoveByVelocity" EndIf="true" Suspended="false" />
     <SpriteRule Name="If not initialized" Sequence="1" Type="If" Function="==" Parameter1="initialized" Parameter2="0" EndIf="false" Suspended="false" />
     <SpriteRule Name="Set initialized" Sequence="8" Type="Do" Function="=" Parameter1="1" ResultParameter="initialized" EndIf="true" Suspended="false" />
     <SpriteRule Name="Set solidity" Sequence="2" Type="Do" Function="SetSolidity" Parameter1="Solidity.Standard" EndIf="false" Suspended="false" />
@@ -2856,8 +2869,15 @@
     <SpriteRule Name="Else set to leftward state" Sequence="6" Type="Else" Function="SwitchToState" Parameter1="(int)Sprites.Arrow.State.Left" Parameter2="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
     <SpriteRule Name="Set movement leftward" Sequence="7" Type="Do" Function="=" Parameter1="-8" ResultParameter="dx" EndIf="true" Suspended="false" />
     <SpriteRule Name="React to solidity" Sequence="9" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Or vertical movement applied" Sequence="11" Type="Or" Function="!=" Parameter1="dy" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Or vertical movement applied" Sequence="17" Type="Or" Function="!=" Parameter1="dy" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Check if hit enemy" Sequence="10" Type="Do" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Enemies" ResultParameter="hit" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If hit enemy" Sequence="11" Type="If" Function="&gt;=" Parameter1="hit" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Create damage" Sequence="12" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Damage)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Deactivate self" Sequence="14" Type="Do" Function="Deactivate" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If no enhanced arrows" Sequence="13" Type="If" Function="==" Parameter1="Counter.Enhanced_Arrows.CurrentValue" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="End if hit enemy" Sequence="15" Type="End" Function="End" EndIf="true" Suspended="false" />
     <SpriteParameter Name="initialized" />
+    <SpriteParameter Name="hit" />
     <SpriteState Name="Right" FramesetName="SpriteFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="68" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
@@ -18598,6 +18618,7 @@ Sprite.prototype.isPointBlocked = function(testPoint, direction, distance) {
       <CategoryTile TileValue="56" />
       <CategoryTile TileValue="57" />
       <CategoryTile TileValue="52" />
+      <CategoryTile TileValue="238" />
     </CategorizedTileset>
   </TileCategory>
   <TileCategory Name="LadderSolid">
