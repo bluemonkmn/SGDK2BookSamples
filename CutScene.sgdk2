@@ -776,9 +776,9 @@
     <Frame FrameValue="127" GraphicSheet="CoolFont" CellIndex="94" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
     <Frame FrameValue="128" GraphicSheet="CoolFont" CellIndex="95" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
     <Frame FrameValue="32" GraphicSheet="CoolFont" CellIndex="30" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
-    <Frame FrameValue="130" GraphicSheet="Portraits" CellIndex="37" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
-    <Frame FrameValue="131" GraphicSheet="Portraits" CellIndex="10" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
     <Frame FrameValue="129" GraphicSheet="Portraits" CellIndex="2" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
+    <Frame FrameValue="130" GraphicSheet="Portraits" CellIndex="1" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
+    <Frame FrameValue="131" GraphicSheet="Portraits" CellIndex="4" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
   </Frameset>
   <Frameset Name="SmallFrames" Folder="">
     <Frame FrameValue="0" GraphicSheet="DungeonCrawl" CellIndex="0" m11="1" m12="0" m21="0" m22="1" dx="0" dy="0" color="-1" />
@@ -920,8 +920,9 @@
     </Tile>
   </Tileset>
   <Counter Name="FrameCounter" Value="1" Max="1000000000" Min="0" />
-  <Counter Name="DarkBook" Folder="Quest" Value="0" Max="5" Min="0" />
+  <Counter Name="DarkBook" Folder="Quest" Value="0" Max="10" Min="0" />
   <Counter Name="AutomatePlayer" Folder="" Value="0" Max="1" Min="0" />
+  <Counter Name="ScrollToPlayer" Folder="" Value="1" Max="1" Min="0" />
   <Map Name="Quest" ScrollMarginLeft="300" ScrollMarginTop="180" ScrollMarginRight="300" ScrollMarginBottom="180" ScrollWidth="6400" ScrollHeight="1600">
     <Layer Name="Designer Background" Width="1" Height="1" BytesPerTile="1" OffsetX="0" OffsetY="0" ScrollRateX="0" ScrollRateY="0" Priority="0" VirtualWidth="4000" VirtualHeight="4000">
       <Tiles>AA==</Tiles>
@@ -934,6 +935,10 @@
       <Sprite Name="Player 1" DefinitionName="Player" StateName="Walking" CurrentFrame="0" X="928" Y="1088" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="CoordIndex" Value="0" />
         <ParameterValue ParameterName="WaitCount" Value="0" />
+      </Sprite>
+      <Sprite Name="Wizard 1" DefinitionName="Wizard" StateName="Walking" CurrentFrame="0" X="1552" Y="355" DX="0" DY="0" Priority="1" Active="true" Color="-1">
+        <ParameterValue ParameterName="CoordIndex" Value="0" />
+        <ParameterValue ParameterName="WaitCounter" Value="0" />
       </Sprite>
       <SpritePlan Name="Animate" Priority="1">
         <BaseClass>PlanBase</BaseClass>
@@ -989,6 +994,63 @@
         <PlanRule Name="Return to phase 3 to re-display message" Sequence="11" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.DecrementAndStop" EndIf="true" Suspended="false" />
         <PlanRule Name="And no message is displayed" Sequence="9" Type="And" Function="!IsMessageShowing" EndIf="false" Suspended="false" />
       </SpritePlan>
+      <SpritePlan Name="Dark book trigger 2" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="1536" Y="333" Weight="0" />
+        <Coordinate Sequence="2" X="1605" Y="412" Weight="0" />
+        <PlanRule Name="If player is here" Sequence="1" Type="If" Function="IsSpriteTouching" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
+        <PlanRule Name="And dark book phase 4" Sequence="2" Type="And" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="4" EndIf="false" Suspended="false" />
+        <PlanRule Name="And pressing button 1" Sequence="3" Type="And" Function="IsInputPressed" Parameter1="m_ParentLayer.m_Player_1" Parameter2="SpriteBase.InputBits.Button1" Parameter3="false" EndIf="false" Suspended="false" />
+        <PlanRule Name="Display dark book wizard message" Sequence="4" Type="Do" Function="ShowMessage" Parameter1="&quot;\u0082    This book contains secrets of\n     the dark menace... and they've\n     been deciphered! I must remain\nhere with this knowledge to protect\nthe village, but you should take\nthis to the castle. I will talk to\nthe guard about granting you\npassage outside the village.&quot;" EndIf="false" Suspended="false" />
+        <PlanRule Name="Advance to Dark Book phase 5" Sequence="5" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.IncrementAndStop" EndIf="true" Suspended="false" />
+        <PlanRule Name="If dark book phase 8" Sequence="6" Type="If" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="8" EndIf="false" Suspended="false" />
+        <PlanRule Name="And wizard is here" Sequence="7" Type="And" Function="IsSpriteWithin" Parameter1="m_ParentLayer.m_Wizard_1" Parameter2="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+        <PlanRule Name="Advance to phase 9 (stop moving)" Sequence="9" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.IncrementAndStop" EndIf="true" Suspended="false" />
+        <PlanRule Name="If dark book phase 9" Sequence="10" Type="If" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="9" EndIf="false" Suspended="false" />
+        <PlanRule Name="And player is here" Sequence="11" Type="And" Function="IsSpriteTouching" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
+        <PlanRule Name="Show dark book phase 9 message" Sequence="13" Type="Do" Function="ShowMessage" Parameter1="&quot;\u0082    I have spoken to the guard to\n     make sure you have a way out\n     of the village. Please\napproach the gryphon near him when\nyou are ready to leave.&quot;" EndIf="false" Suspended="false" />
+        <PlanRule Name="Advance to dark book phase 10" Sequence="14" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.IncrementAndStop" EndIf="true" Suspended="false" />
+        <PlanRule Name="And no phase 9 message is showing" Sequence="12" Type="And" Function="!IsMessageShowing" EndIf="false" Suspended="false" />
+        <PlanRule Name="If dark book phase 10" Sequence="15" Type="If" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="10" EndIf="false" Suspended="false" />
+        <PlanRule Name="And player is here for phase 10" Sequence="16" Type="And" Function="IsSpriteTouching" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
+        <PlanRule Name="And player is pressing button 1" Sequence="17" Type="And" Function="IsInputPressed" Parameter1="m_ParentLayer.m_Player_1" Parameter2="SpriteBase.InputBits.Button1" Parameter3="true" EndIf="false" Suspended="false" />
+        <PlanRule Name="And no phase 10 message is showing" Sequence="18" Type="And" Function="!IsMessageShowing" EndIf="false" Suspended="false" />
+        <PlanRule Name="Return to phase 9 to repeat message" Sequence="19" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.DecrementAndStop" EndIf="true" Suspended="false" />
+        <PlanRule Name="Restore scrolling to player" Sequence="8" Type="Do" Function="=" Parameter1="1" ResultParameter="Counter.ScrollToPlayer.CurrentValue" EndIf="false" Suspended="false" />
+      </SpritePlan>
+      <SpritePlan Name="Dark book path 2" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="1558" Y="473" Weight="0" />
+        <Coordinate Sequence="2" X="1560" Y="1100" Weight="0" />
+        <Coordinate Sequence="3" X="1880" Y="1102" Weight="0" />
+        <Coordinate Sequence="4" X="1920" Y="1024" Weight="0" />
+        <Coordinate Sequence="5" X="1824" Y="1088" Weight="0" />
+        <Coordinate Sequence="6" X="1568" Y="1088" Weight="0" />
+        <Coordinate Sequence="7" X="1568" Y="384" Weight="0" />
+        <PlanRule Name="If dark book phase 5 or later" Sequence="1" Type="If" Function="&gt;=" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="5" EndIf="false" Suspended="false" />
+        <PlanRule Name="And before Dark Book phase 9" Sequence="2" Type="And" Function="&lt;" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="9" EndIf="false" Suspended="false" />
+        <PlanRule Name="Make wizard follow path" Sequence="4" Type="Do" Function="FollowPath" Parameter1="m_ParentLayer.m_Wizard_1" Parameter2="ref m_ParentLayer.m_Wizard_1.CoordIndex" Parameter3="ref m_ParentLayer.m_Wizard_1.WaitCounter" EndIf="false" Suspended="false" />
+        <PlanRule Name="Scroll wizard into view" Sequence="6" Type="Do" Function="ScrollSpriteIntoView" Parameter1="m_ParentLayer.m_Wizard_1" Parameter2="true" EndIf="true" Suspended="false" />
+        <PlanRule Name="Disable scrolling to player" Sequence="5" Type="Do" Function="=" Parameter1="0" ResultParameter="Counter.ScrollToPlayer.CurrentValue" EndIf="false" Suspended="false" />
+        <PlanRule Name="And no messages are showing" Sequence="3" Type="And" Function="!IsMessageShowing" EndIf="false" Suspended="false" />
+      </SpritePlan>
+      <SpritePlan Name="Dark book conversation 2" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="1920" Y="1024" Weight="0" />
+        <Coordinate Sequence="2" X="1952" Y="1056" Weight="0" />
+        <PlanRule Name="If wizard is here" Sequence="1" Type="If" Function="IsSpriteWithin" Parameter1="m_ParentLayer.m_Wizard_1" Parameter2="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+        <PlanRule Name="Display wizard guard dialog 1" Sequence="3" Type="Do" Function="ShowMessage" Parameter1="&quot;\u0082    I've met a boy who has\n     important information about\n     the dark menace. We need to\n     let him out to take this\ninformation to the castle.&quot;" EndIf="false" Suspended="false" />
+        <PlanRule Name="And dark book phase 5" Sequence="2" Type="And" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="5" EndIf="false" Suspended="false" />
+        <PlanRule Name="Advance to dark book phase 6" Sequence="4" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.IncrementAndStop" EndIf="true" Suspended="false" />
+        <PlanRule Name="If dark book phase 6" Sequence="5" Type="If" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="6" EndIf="false" Suspended="false" />
+        <PlanRule Name="And no message is showing (phase 6)" Sequence="6" Type="And" Function="!IsMessageShowing" EndIf="false" Suspended="false" />
+        <PlanRule Name="Display wizard guard dialog 2" Sequence="7" Type="Do" Function="ShowMessage" Parameter1="&quot;This passage is blocked by     \u0083\nboulders to protect the village\nuntil the menace is handled,\nand cannot be simply opened for one\nperson to pass.\nHowever, I can allow the gryphon\nto fly him to the castle. Tell him\nto approach the gryphon when he is \nready to leave.&quot;" EndIf="false" Suspended="false" />
+        <PlanRule Name="Advance to dark book phase 7" Sequence="8" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.IncrementAndStop" EndIf="true" Suspended="false" />
+        <PlanRule Name="If dark book phase 7" Sequence="9" Type="If" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="7" EndIf="false" Suspended="false" />
+        <PlanRule Name="And no message is showing (phase 7)" Sequence="10" Type="And" Function="!IsMessageShowing" EndIf="false" Suspended="false" />
+        <PlanRule Name="Display wizard guard dialog 3" Sequence="11" Type="Do" Function="ShowMessage" Parameter1="&quot;\u0082    Very well. Have the gryphon\n     readied immediately.\n&quot;" EndIf="false" Suspended="false" />
+        <PlanRule Name="Advance to dark book phase 8" Sequence="12" Type="Do" Function="ChangeCounter" Parameter1="Counter.DarkBook" Parameter2="CounterOperation.IncrementAndStop" EndIf="true" Suspended="false" />
+      </SpritePlan>
     </Layer>
   </Map>
   <SpriteDefinition Name="Player" Folder="" BaseClass="SpriteBase">
@@ -996,18 +1058,30 @@
     <SpriteRule Name="Process inputs" Sequence="3" Type="Do" Function="AccelerateByInputs" Parameter1="10" Parameter2="8" Parameter3="false" EndIf="false" Suspended="false" />
     <SpriteRule Name="React to solidity" Sequence="4" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
     <SpriteRule Name="Move" Sequence="5" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Scroll into view" Sequence="7" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Scroll into view" Sequence="8" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="true" Suspended="false" />
     <SpriteRule Name="Inertia" Sequence="6" Type="Do" Function="ReactToInertia" Parameter1="80" Parameter2="80" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If touching special tile" Sequence="8" Type="If" Function="TouchTiles" Parameter1="TileCategoryName.Touchable" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Open door" Sequence="9" Type="Do" Function="TileChange" Parameter1="42" Parameter2="43" Parameter3="false" ResultParameter="" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Take book" Sequence="11" Type="Do" Function="TileTake" Parameter1="87" Parameter2="Counter.DarkBook" Parameter3="0" EndIf="true" Suspended="false" />
-    <SpriteRule Name="If dark book phase 2" Sequence="10" Type="If" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="2" EndIf="false" Suspended="false" />
-    <SpriteRule Name="End if touching special tile" Sequence="12" Type="End" Function="End" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If touching special tile" Sequence="9" Type="If" Function="TouchTiles" Parameter1="TileCategoryName.Touchable" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Open door" Sequence="10" Type="Do" Function="TileChange" Parameter1="42" Parameter2="43" Parameter3="false" ResultParameter="" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Take book" Sequence="12" Type="Do" Function="TileTake" Parameter1="87" Parameter2="Counter.DarkBook" Parameter3="0" EndIf="true" Suspended="false" />
+    <SpriteRule Name="If dark book phase 2" Sequence="11" Type="If" Function="==" Parameter1="Counter.DarkBook.CurrentValue" Parameter2="2" EndIf="false" Suspended="false" />
+    <SpriteRule Name="End if touching special tile" Sequence="13" Type="End" Function="End" EndIf="true" Suspended="false" />
     <SpriteRule Name="If player automation is not enabled" Sequence="1" Type="If" Function="==" Parameter1="Counter.AutomatePlayer.CurrentValue" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If scroll to player is enabled" Sequence="7" Type="If" Function="==" Parameter1="Counter.ScrollToPlayer.CurrentValue" Parameter2="1" EndIf="false" Suspended="false" />
     <SpriteParameter Name="CoordIndex" />
     <SpriteParameter Name="WaitCount" />
     <SpriteState Name="Walking" FramesetName="SmallFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="60" Duration="1" MaskAlphaLevel="0" />
+    </SpriteState>
+  </SpriteDefinition>
+  <SpriteDefinition Name="Wizard" Folder="" BaseClass="SpriteBase">
+    <SpriteRule Name="Move" Sequence="4" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Accelerate" Sequence="1" Type="Do" Function="AccelerateByInputs" Parameter1="10" Parameter2="8" Parameter3="false" EndIf="false" Suspended="false" />
+    <SpriteRule Name="React to solidity" Sequence="3" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Inertia" Sequence="2" Type="Do" Function="ReactToInertia" Parameter1="80" Parameter2="80" EndIf="false" Suspended="false" />
+    <SpriteParameter Name="CoordIndex" />
+    <SpriteParameter Name="WaitCounter" />
+    <SpriteState Name="Walking" FramesetName="SmallFrames" SolidWidth="32" SolidHeight="32" Sequence="1">
+      <SpriteFrame Sequence="0" FrameValue="92" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
   </SpriteDefinition>
   <Solidity Name="Standard">
