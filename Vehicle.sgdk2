@@ -1385,6 +1385,18 @@
       <Sprite Name="Player 1" DefinitionName="Player" StateName="Right" CurrentFrame="0" X="290" Y="1696" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="TempNum" Value="0" />
       </Sprite>
+      <Sprite Name="Balloon 2" DefinitionName="Balloon" StateName="Inflated" CurrentFrame="0" X="1408" Y="1664" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
+        <ParameterValue ParameterName="UnderPlayerControl" Value="0" />
+        <ParameterValue ParameterName="TouchedPlayer" Value="0" />
+      </Sprite>
+      <Sprite Name="Balloon 3" DefinitionName="Balloon" StateName="Inflated" CurrentFrame="0" X="1493" Y="2068" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
+        <ParameterValue ParameterName="UnderPlayerControl" Value="0" />
+        <ParameterValue ParameterName="TouchedPlayer" Value="0" />
+      </Sprite>
+      <Sprite Name="Balloon 4" DefinitionName="Balloon" StateName="Inflated" CurrentFrame="0" X="785" Y="989" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
+        <ParameterValue ParameterName="UnderPlayerControl" Value="0" />
+        <ParameterValue ParameterName="TouchedPlayer" Value="0" />
+      </Sprite>
       <SpritePlan Name="Animate" Priority="1">
         <BaseClass>PlanBase</BaseClass>
         <PlanRule Name="Limit frame rate" Sequence="1" Type="Do" Function="LimitFrameRate" Parameter1="30" EndIf="false" Suspended="false" />
@@ -1394,8 +1406,21 @@
         <BaseClass>PlanBase</BaseClass>
         <PlanRule Name="If map flag 1 is set" Sequence="1" Type="If" Function="IsMapFlagOn" Parameter1="1" EndIf="false" Suspended="false" />
         <PlanRule Name="Reactivate player" Sequence="3" Type="Do" Function="ActivateSprite" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
-        <PlanRule Name="Move player to balloon" Sequence="4" Type="Do" Function="MatchSpritePosition" Parameter1="m_ParentLayer.m_Player_1" Parameter2="m_ParentLayer.m_Balloon_1" EndIf="true" Suspended="false" />
+        <PlanRule Name="Move player to balloon" Sequence="4" Type="Do" Function="MatchSpritePosition" Parameter1="m_ParentLayer.m_Player_1" Parameter2="lastCreatedSprite" EndIf="true" Suspended="false" />
         <PlanRule Name="Reset map flag 1" Sequence="2" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="false" EndIf="false" Suspended="false" />
+      </SpritePlan>
+      <SpritePlan Name="Reset Balloon" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="65" Y="2095" Weight="0" />
+        <Coordinate Sequence="2" X="97" Y="2191" Weight="0" />
+        <PlanRule Name="Move balloon to starting point" Sequence="3" Type="Do" Function="TransportToPlan" Parameter1="m_ParentLayer.m_Balloon_1" Parameter2="m_ParentLayer.m_BalloonStart" Parameter3="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+        <PlanRule Name="If player is touching this plan" Sequence="1" Type="If" Function="IsSpriteTouching" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
+        <PlanRule Name="And player wasn't touching it before" Sequence="2" Type="And" Function="!WasSpriteTouching" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
+      </SpritePlan>
+      <SpritePlan Name="BalloonStart" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="480" Y="1568" Weight="0" />
+        <Coordinate Sequence="2" X="576" Y="1728" Weight="0" />
       </SpritePlan>
     </Layer>
   </Map>
@@ -1472,24 +1497,26 @@
     </SpriteState>
   </SpriteDefinition>
   <SpriteDefinition Name="Balloon" Folder="" BaseClass="SpriteBase">
-    <SpriteRule Name="Else check for collision with player" Sequence="9" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Player" ResultParameter="TouchedPlayer" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If player is touching" Sequence="10" Type="If" Function="&gt;=" Parameter1="TouchedPlayer" Parameter2="0" EndIf="false" Suspended="false" />
-    <SpriteRule Name="And player is pressing up" Sequence="11" Type="And" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Up" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Else check for collision with player" Sequence="11" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Player" ResultParameter="TouchedPlayer" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If player is touching" Sequence="12" Type="If" Function="&gt;=" Parameter1="TouchedPlayer" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="And player is pressing up" Sequence="13" Type="And" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Up" Parameter2="true" EndIf="false" Suspended="false" />
     <SpriteRule Name="Map player 1 inputs to this sprite" Sequence="1" Type="Do" Function="MapPlayerToInputs" Parameter1="1" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Start controlling balloon" Sequence="12" Type="Do" Function="=" Parameter1="1" ResultParameter="UnderPlayerControl" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Start controlling balloon" Sequence="14" Type="Do" Function="=" Parameter1="1" ResultParameter="UnderPlayerControl" EndIf="false" Suspended="false" />
     <SpriteRule Name="If balloon is under player control" Sequence="2" Type="If" Function="&gt;" Parameter1="UnderPlayerControl" Parameter2="0" EndIf="false" Suspended="false" />
     <SpriteRule Name="Scroll view to the balloon" Sequence="3" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Tell player to deactivate" Sequence="13" Type="Do" Function="=" Parameter1="1" ResultParameter="Counter.InVehicle.CurrentValue" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Move" Sequence="18" Type="Do" Function="MoveByVelocity" EndIf="true" Suspended="false" />
-    <SpriteRule Name="React to inertia" Sequence="14" Type="Do" Function="ReactToInertia" Parameter1="80" Parameter2="80" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Gravity" Sequence="15" Type="Do" Function="AlterYVelocity" Parameter1=".2" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Limit velocity" Sequence="16" Type="Do" Function="LimitVelocity" Parameter1="1" EndIf="true" Suspended="false" />
-    <SpriteRule Name="React to solidity" Sequence="17" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
-    <SpriteRule Name="If player is pressing down" Sequence="4" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Down" Parameter2="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="And down is blocked" Sequence="5" Type="And" Function="Blocked" Parameter1="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Re-activate player" Sequence="8" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="true" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Stop player control of balloon" Sequence="6" Type="Do" Function="=" Parameter1="0" ResultParameter="UnderPlayerControl" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Set InVehicle=2 to reflect player is exiting vehicle" Sequence="7" Type="Do" Function="=" Parameter1="2" ResultParameter="Counter.InVehicle.CurrentValue" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Tell player to deactivate" Sequence="15" Type="Do" Function="=" Parameter1="1" ResultParameter="Counter.InVehicle.CurrentValue" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Move" Sequence="20" Type="Do" Function="MoveByVelocity" EndIf="true" Suspended="false" />
+    <SpriteRule Name="React to inertia" Sequence="16" Type="Do" Function="ReactToInertia" Parameter1="80" Parameter2="80" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Gravity" Sequence="17" Type="Do" Function="AlterYVelocity" Parameter1=".2" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Limit velocity" Sequence="18" Type="Do" Function="LimitVelocity" Parameter1="1" EndIf="true" Suspended="false" />
+    <SpriteRule Name="React to solidity" Sequence="19" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If player is pressing down" Sequence="5" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Down" Parameter2="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="And down is blocked" Sequence="6" Type="And" Function="Blocked" Parameter1="SpriteBase.Direction.Down" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Re-activate player" Sequence="10" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="true" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Stop player control of balloon" Sequence="7" Type="Do" Function="=" Parameter1="0" ResultParameter="UnderPlayerControl" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Set InVehicle=2 to reflect player is exiting vehicle" Sequence="8" Type="Do" Function="=" Parameter1="2" ResultParameter="Counter.InVehicle.CurrentValue" EndIf="false" Suspended="false" />
+    <SpriteRule Name="React to inputs" Sequence="4" Type="Do" Function="AccelerateByInputs" Parameter1="2" Parameter2="5" Parameter3="false" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Store myself in lastCreatedSprite" Sequence="9" Type="Do" Function="=" Parameter1="this" ResultParameter="lastCreatedSprite" EndIf="false" Suspended="false" />
     <SpriteParameter Name="UnderPlayerControl" />
     <SpriteParameter Name="TouchedPlayer" />
     <SpriteState Name="Inflated" FramesetName="BalloonFrame" SolidWidth="72" SolidHeight="128" Sequence="1">
