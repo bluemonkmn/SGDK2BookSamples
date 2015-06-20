@@ -1381,6 +1381,9 @@
       <Sprite Name="Balloon 1" DefinitionName="Balloon" StateName="Inflated" CurrentFrame="0" X="498" Y="1584" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="UnderPlayerControl" Value="0" />
         <ParameterValue ParameterName="TouchedPlayer" Value="0" />
+        <ParameterValue ParameterName="PathId" Value="1" />
+        <ParameterValue ParameterName="CoordIndex" Value="0" />
+        <ParameterValue ParameterName="WaitCount" Value="0" />
       </Sprite>
       <Sprite Name="Player 1" DefinitionName="Player" StateName="Right" CurrentFrame="0" X="290" Y="1696" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="TempNum" Value="0" />
@@ -1388,14 +1391,23 @@
       <Sprite Name="Balloon 2" DefinitionName="Balloon" StateName="Inflated" CurrentFrame="0" X="1408" Y="1664" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="UnderPlayerControl" Value="0" />
         <ParameterValue ParameterName="TouchedPlayer" Value="0" />
+        <ParameterValue ParameterName="PathId" Value="0" />
+        <ParameterValue ParameterName="CoordIndex" Value="0" />
+        <ParameterValue ParameterName="WaitCount" Value="0" />
       </Sprite>
       <Sprite Name="Balloon 3" DefinitionName="Balloon" StateName="Inflated" CurrentFrame="0" X="1493" Y="2068" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="UnderPlayerControl" Value="0" />
         <ParameterValue ParameterName="TouchedPlayer" Value="0" />
+        <ParameterValue ParameterName="PathId" Value="0" />
+        <ParameterValue ParameterName="CoordIndex" Value="0" />
+        <ParameterValue ParameterName="WaitCount" Value="0" />
       </Sprite>
       <Sprite Name="Balloon 4" DefinitionName="Balloon" StateName="Inflated" CurrentFrame="0" X="785" Y="989" DX="0" DY="0" Priority="1" Active="true" Solidity="Standard" Color="-1">
         <ParameterValue ParameterName="UnderPlayerControl" Value="0" />
         <ParameterValue ParameterName="TouchedPlayer" Value="0" />
+        <ParameterValue ParameterName="PathId" Value="0" />
+        <ParameterValue ParameterName="CoordIndex" Value="0" />
+        <ParameterValue ParameterName="WaitCount" Value="0" />
       </Sprite>
       <SpritePlan Name="Animate" Priority="1">
         <BaseClass>PlanBase</BaseClass>
@@ -1413,14 +1425,65 @@
         <BaseClass>PlanBase</BaseClass>
         <Coordinate Sequence="1" X="65" Y="2095" Weight="0" />
         <Coordinate Sequence="2" X="97" Y="2191" Weight="0" />
-        <PlanRule Name="Move balloon to starting point" Sequence="3" Type="Do" Function="TransportToPlan" Parameter1="m_ParentLayer.m_Balloon_1" Parameter2="m_ParentLayer.m_BalloonStart" Parameter3="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
+        <PlanRule Name="Move balloon to starting point" Sequence="4" Type="Do" Function="TransportToPlan" Parameter1="m_ParentLayer.m_Balloon_1" Parameter2="m_ParentLayer.m_BalloonStart" Parameter3="RelativePosition.BottomCenter" EndIf="true" Suspended="false" />
         <PlanRule Name="If player is touching this plan" Sequence="1" Type="If" Function="IsSpriteTouching" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
         <PlanRule Name="And player wasn't touching it before" Sequence="2" Type="And" Function="!WasSpriteTouching" Parameter1="m_ParentLayer.m_Player_1" EndIf="false" Suspended="false" />
+        <PlanRule Name="Set balloon 1 on path 1" Sequence="3" Type="Do" Function="=" Parameter1="1" ResultParameter="m_ParentLayer.m_Balloon_1.PathId" EndIf="false" Suspended="false" />
       </SpritePlan>
       <SpritePlan Name="BalloonStart" Priority="1">
         <BaseClass>PlanBase</BaseClass>
         <Coordinate Sequence="1" X="480" Y="1568" Weight="0" />
         <Coordinate Sequence="2" X="576" Y="1728" Weight="0" />
+      </SpritePlan>
+      <SpritePlan Name="UpwardPath" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="980" Y="1528" Weight="0" />
+        <Coordinate Sequence="2" X="1020" Y="2051" Weight="0" />
+        <Coordinate Sequence="3" X="1852" Y="2019" Weight="0" />
+        <Coordinate Sequence="4" X="1838" Y="1642" Weight="0" />
+        <Coordinate Sequence="5" X="1308" Y="1636" Weight="0" />
+        <Coordinate Sequence="6" X="1307" Y="1259" Weight="0" />
+        <Coordinate Sequence="7" X="1602" Y="1190" Weight="0" />
+        <Coordinate Sequence="8" X="1600" Y="960" Weight="0" />
+        <Coordinate Sequence="9" X="1248" Y="960" Weight="0" />
+        <Coordinate Sequence="10" X="1248" Y="992" Weight="0" />
+        <PlanRule Name="If riding in Balloon 1" Sequence="1" Type="If" Function="==" Parameter1="m_ParentLayer.m_Balloon_1.UnderPlayerControl" Parameter2="1" EndIf="false" Suspended="false" />
+        <PlanRule Name="Stop player control of balloon" Sequence="5" Type="Do" Function="=" Parameter1="0" ResultParameter="m_ParentLayer.m_Balloon_1.UnderPlayerControl" EndIf="false" Suspended="false" />
+        <PlanRule Name="Follow upward path" Sequence="3" Type="Do" Function="FollowPath" Parameter1="m_ParentLayer.m_Balloon_1" Parameter2="ref m_ParentLayer.m_Balloon_1.CoordIndex" Parameter3="ref m_ParentLayer.m_Balloon_1.WaitCount" EndIf="false" Suspended="false" />
+        <PlanRule Name="And following path 1" Sequence="2" Type="And" Function="==" Parameter1="m_ParentLayer.m_Balloon_1.PathId" Parameter2="1" EndIf="false" Suspended="false" />
+        <PlanRule Name="If reached last coordinate" Sequence="4" Type="If" Function="==" Parameter1="m_ParentLayer.m_Balloon_1.CoordIndex" Parameter2="9" EndIf="false" Suspended="false" />
+        <PlanRule Name="Set InVehicle=2 to reflect player is exiting vehicle" Sequence="6" Type="Do" Function="=" Parameter1="2" ResultParameter="Counter.InVehicle.CurrentValue" EndIf="false" Suspended="false" />
+        <PlanRule Name="Store Balloon1 in lastCreatedSprite" Sequence="7" Type="Do" Function="=" Parameter1="m_ParentLayer.m_Balloon_1" ResultParameter="lastCreatedSprite" EndIf="false" Suspended="false" />
+        <PlanRule Name="Re-activate player" Sequence="10" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="true" EndIf="true" Suspended="false" />
+        <PlanRule Name="End if riding in Balloon 1" Sequence="11" Type="End" Function="End" EndIf="true" Suspended="false" />
+        <PlanRule Name="Switch to downward path" Sequence="8" Type="Do" Function="=" Parameter1="2" ResultParameter="m_ParentLayer.m_Balloon_1.PathId" EndIf="false" Suspended="false" />
+        <PlanRule Name="Reset CoordIndex" Sequence="9" Type="Do" Function="=" Parameter1="0" ResultParameter="m_ParentLayer.m_Balloon_1.CoordIndex" EndIf="false" Suspended="false" />
+        <PlanParameterValue Name="TargetDistance" Value="30" />
+      </SpritePlan>
+      <SpritePlan Name="DownwardPath" Priority="1">
+        <BaseClass>PlanBase</BaseClass>
+        <Coordinate Sequence="1" X="1504" Y="928" Weight="0" />
+        <Coordinate Sequence="2" X="1536" Y="1248" Weight="0" />
+        <Coordinate Sequence="3" X="1312" Y="1312" Weight="0" />
+        <Coordinate Sequence="4" X="1312" Y="1664" Weight="0" />
+        <Coordinate Sequence="5" X="1856" Y="1664" Weight="0" />
+        <Coordinate Sequence="6" X="1856" Y="2048" Weight="0" />
+        <Coordinate Sequence="7" X="992" Y="2048" Weight="0" />
+        <Coordinate Sequence="8" X="960" Y="1536" Weight="0" />
+        <Coordinate Sequence="9" X="512" Y="1536" Weight="0" />
+        <Coordinate Sequence="10" X="512" Y="1600" Weight="0" />
+        <PlanRule Name="If riding in Balloon 1" Sequence="1" Type="If" Function="==" Parameter1="m_ParentLayer.m_Balloon_1.UnderPlayerControl" Parameter2="1" EndIf="false" Suspended="false" />
+        <PlanRule Name="And following path 2" Sequence="2" Type="And" Function="==" Parameter1="m_ParentLayer.m_Balloon_1.PathId" Parameter2="2" EndIf="false" Suspended="false" />
+        <PlanRule Name="Follow downward path" Sequence="3" Type="Do" Function="FollowPath" Parameter1="m_ParentLayer.m_Balloon_1" Parameter2="ref m_ParentLayer.m_Balloon_1.CoordIndex" Parameter3="ref m_ParentLayer.m_Balloon_1.WaitCount" EndIf="false" Suspended="false" />
+        <PlanRule Name="If reached last coordinate" Sequence="4" Type="If" Function="==" Parameter1="m_ParentLayer.m_Balloon_1.CoordIndex" Parameter2="9" EndIf="false" Suspended="false" />
+        <PlanRule Name="Stop player control of balloon" Sequence="5" Type="Do" Function="=" Parameter1="0" ResultParameter="m_ParentLayer.m_Balloon_1.UnderPlayerControl" EndIf="false" Suspended="false" />
+        <PlanRule Name="Set InVehicle=2 to reflect player is exiting vehicle" Sequence="6" Type="Do" Function="=" Parameter1="2" ResultParameter="Counter.InVehicle.CurrentValue" EndIf="false" Suspended="false" />
+        <PlanRule Name="Store Balloon1 in lastCreatedSprite" Sequence="7" Type="Do" Function="=" Parameter1="m_ParentLayer.m_Balloon_1" ResultParameter="lastCreatedSprite" EndIf="false" Suspended="false" />
+        <PlanRule Name="Switch to upward path" Sequence="8" Type="Do" Function="=" Parameter1="1" ResultParameter="m_ParentLayer.m_Balloon_1.PathId" EndIf="false" Suspended="false" />
+        <PlanRule Name="Re-activate player" Sequence="10" Type="Do" Function="SetMapFlag" Parameter1="1" Parameter2="true" EndIf="true" Suspended="false" />
+        <PlanRule Name="End if riding in Balloon 1" Sequence="11" Type="End" Function="End" EndIf="true" Suspended="false" />
+        <PlanRule Name="Reset CoordIndex" Sequence="9" Type="Do" Function="=" Parameter1="0" ResultParameter="m_ParentLayer.m_Balloon_1.CoordIndex" EndIf="false" Suspended="false" />
+        <PlanParameterValue Name="TargetDistance" Value="30" />
       </SpritePlan>
     </Layer>
   </Map>
@@ -1519,6 +1582,9 @@
     <SpriteRule Name="Store myself in lastCreatedSprite" Sequence="9" Type="Do" Function="=" Parameter1="this" ResultParameter="lastCreatedSprite" EndIf="false" Suspended="false" />
     <SpriteParameter Name="UnderPlayerControl" />
     <SpriteParameter Name="TouchedPlayer" />
+    <SpriteParameter Name="PathId" />
+    <SpriteParameter Name="CoordIndex" />
+    <SpriteParameter Name="WaitCount" />
     <SpriteState Name="Inflated" FramesetName="BalloonFrame" SolidWidth="72" SolidHeight="128" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="0" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
@@ -16566,7 +16632,7 @@ MapLayer.prototype.processSprites = function() {
   </SourceCode>
   <SourceCode Name="Plan.js" IsCustomObject="false">
     <Text>function PlanBase() {
-   this.targetDistance = 5;
+   this.TargetDistance = 5;
 }
 
 PlanBase.prototype = new GeneralRules();
@@ -16624,7 +16690,7 @@ PlanBase.prototype.checkNextCoordinate = function(sprite, coordinateIndex, waitC
    }
    var dx = this[coordinateIndex].x - sprite.x;
    var dy = this[coordinateIndex].y - sprite.y;
-   if (Math.sqrt(dx * dx + dy * dy) &lt;= this.targetDistance)
+   if (Math.sqrt(dx * dx + dy * dy) &lt;= this.TargetDistance)
    {
       if (this[coordinateIndex].weight &gt; 0)
          sprite[waitCounterMember]++;
