@@ -991,14 +991,15 @@
     <SpriteRule Name="Switch to previous state (turn right)" Sequence="5" Type="Do" Function="SwitchToState" Parameter1="(this.state + 35) % 36" Parameter2="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
     <SpriteRule Name="If pressing up" Sequence="6" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Up" Parameter2="false" EndIf="false" Suspended="false" />
     <SpriteRule Name="Accelerate in current direction" Sequence="7" Type="Do" Function="PolarAccelerate" Parameter1="10" Parameter2="(int)Sprites.Car.State.S0" Parameter3="36" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Limit velocity" Sequence="11" Type="Do" Function="LimitVelocity" Parameter1="10" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Limit velocity" Sequence="12" Type="Do" Function="LimitVelocity" Parameter1="10" EndIf="false" Suspended="false" />
     <SpriteRule Name="If pressing down" Sequence="8" Type="If" Function="IsInputPressed" Parameter1="SpriteBase.InputBits.Down" Parameter2="false" EndIf="false" Suspended="false" />
     <SpriteRule Name="Accelerate backwards" Sequence="9" Type="Do" Function="PolarAccelerate" Parameter1="-10" Parameter2="(int)Sprites.Car.State.S0" Parameter3="36" EndIf="true" Suspended="false" />
-    <SpriteRule Name="Scroll into view" Sequence="14" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Move" Sequence="13" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Scroll into view" Sequence="15" Type="Do" Function="ScrollSpriteIntoView" Parameter1="true" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Move" Sequence="14" Type="Do" Function="MoveByVelocity" EndIf="false" Suspended="false" />
     <SpriteRule Name="Inertia" Sequence="10" Type="Do" Function="ReactToInertia" Parameter1="99" Parameter2="99" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Limit frame rate" Sequence="15" Type="Do" Function="LimitFrameRate" Parameter1="30" EndIf="false" Suspended="false" />
-    <SpriteRule Name="React to solidity" Sequence="12" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Limit frame rate" Sequence="16" Type="Do" Function="LimitFrameRate" Parameter1="30" EndIf="false" Suspended="false" />
+    <SpriteRule Name="React to solidity" Sequence="13" Type="Do" Function="ReactToSolid" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Rotate velocity" Sequence="11" Type="Do" Function="RotateVelocity" Parameter1="(int)Sprites.Car.State.S0" Parameter2="36" EndIf="false" Suspended="false" />
     <SpriteState Name="S0" FramesetName="RotatingCarFrames" SolidWidth="60" SolidHeight="40" Sequence="1">
       <SpriteFrame Sequence="0" FrameValue="0" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
@@ -17367,6 +17368,38 @@ Sprite.prototype.polarAccelerate = function(acceleration, firstState, stateCount
       this.dx += ddx;
    else
       this.localDX += ddx;
+};
+
+Sprite.prototype.rotateVelocity = function(firstState, stateCount) {
+   var oldDx, oldDy;
+   if (this.localDX == null)
+      oldDx = this.dx;
+   else
+      oldDx = this.localDX;
+
+   if (this.localDY == null)
+      oldDy = this.dy;
+   else
+      oldDy = this.localDY;
+
+   var angle = ((this.state - firstState) * Math.PI * 2 / stateCount);
+
+   var facingX, facingY;
+   facingX = Math.cos(angle);
+   facingY = -Math.sin(angle);
+   var dotProduct = oldDx * facingX + oldDy * facingY;
+   facingX *= dotProduct;
+   facingY *= dotProduct;
+
+   if (this.localDX == null)
+      this.dx = facingX;
+   else
+      this.localDX = facingX;
+
+   if (this.localDY == null)
+      this.dy = facingY;
+   else
+      this.localDY = facingY;
 };
 </Text>
   </SourceCode>
