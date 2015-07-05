@@ -1318,10 +1318,16 @@
     <SpriteRule Name="If hit player fire" Sequence="8" Type="If" Function="&gt;=" Parameter1="CollisionIndex" Parameter2="0" EndIf="false" Suspended="false" />
     <SpriteRule Name="Deactivate player fire" Sequence="9" Type="Do" Function="SetCategorySpriteState" Parameter1="ParentLayer.m_SpriteCategories.PlayerFire" Parameter2="CollisionIndex" Parameter3="(int)Sprites.PlayerFire.State.Deactivate" EndIf="false" Suspended="false" />
     <SpriteRule Name="Add explosion here" Sequence="10" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Explosion)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
-    <SpriteRule Name="Deactivate self" Sequence="11" Type="Do" Function="Deactivate" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Deactivate self" Sequence="11" Type="Do" Function="Deactivate" EndIf="false" Suspended="false" />
     <SpriteRule Name="If WaitCounter == 20" Sequence="5" Type="If" Function="==" Parameter1="WaitCounter" Parameter2="20" EndIf="false" Suspended="false" />
     <SpriteRule Name="Or WaitCounter == 10" Sequence="6" Type="Or" Function="==" Parameter1="WaitCounter" Parameter2="10" EndIf="false" Suspended="false" />
     <SpriteRule Name="Fire at player" Sequence="7" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.EnemyFire)" Parameter2="RelativePosition.BottomCenter" Parameter3="RelativePosition.CenterMiddle" EndIf="true" Suspended="false" />
+    <SpriteRule Name="Else check if hit player" Sequence="12" Type="Else" Function="TestCollisionRect" Parameter1="ParentLayer.m_SpriteCategories.Player" ResultParameter="CollisionIndex" EndIf="false" Suspended="false" />
+    <SpriteRule Name="If hit player" Sequence="13" Type="If" Function="&gt;=" Parameter1="CollisionIndex" Parameter2="0" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Add enemy fire here" Sequence="14" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.EnemyFire)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Add explosion from hitting player" Sequence="15" Type="Do" Function="AddSpriteHere" Parameter1="typeof(Sprites.Explosion)" Parameter2="RelativePosition.CenterMiddle" Parameter3="RelativePosition.CenterMiddle" EndIf="false" Suspended="false" />
+    <SpriteRule Name="Deactivate self from hitting player" Sequence="16" Type="Do" Function="Deactivate" EndIf="true" Suspended="false" />
+    <SpriteRule Name="End if hit player fire" Sequence="17" Type="End" Function="End" EndIf="true" Suspended="false" />
     <SpriteParameter Name="CoordIndex" />
     <SpriteParameter Name="WaitCounter" />
     <SpriteParameter Name="CollisionIndex" />
@@ -1405,9 +1411,6 @@
       <SpriteFrame Sequence="0" FrameValue="12" Duration="1" MaskAlphaLevel="0" />
     </SpriteState>
   </SpriteDefinition>
-  <SpriteCategory Name="Fighter">
-    <SpriteCategorySprite DefinitionName="Fighter" />
-  </SpriteCategory>
   <SpriteCategory Name="PlayerFire">
     <SpriteCategorySprite DefinitionName="PlayerFire" />
   </SpriteCategory>
